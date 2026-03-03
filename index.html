@@ -3,241 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MICHOU TWITCH - Développeur Fullstack & AI | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>MICHOU TWITCH - Portfolio Pro 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #0f1625;
+            --accent-1: #00d4ff;
+            --accent-2: #7c3aed;
+            --accent-3: #10ff88;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --glass-bg: rgba(15, 22, 37, 0.4);
+            --border-glow: rgba(0, 212, 255, 0.3);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #020617 0%, #1e293b 50%, #0f172a 100%);
-            color: #e5e7eb;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             overflow-x: hidden;
+            cursor: none;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        /* Custom Cursor Magnétique */
+        .cursor {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            background: radial-gradient(circle, var(--accent-1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+        .cursor-follower {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--accent-1);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+        .hover-cursor { transform: scale(1.5) !important; }
+        /* Particules Background */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; position: relative; }
+        /* Header Hero */
         header {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 2rem;
-            position: relative;
         }
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #10b981);
+        .hero-content {
+            max-width: 700px;
+        }
+        .hero-title {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 800;
+            line-height: 0.9;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
         }
-        .hero-content p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9; }
-        .cta-btn {
-            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            border-radius: 2px;
         }
-        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4); }
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+        /* Néomorphisme 3D Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--border-glow);
+            border-radius: 28px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 
+                0 25px 50px -12px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 28px;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 
+                0 50px 100px -20px rgba(0,212,255,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+        .glass-card:hover::before { opacity: 1; }
+        /* Nav Pro */
         nav {
             position: fixed;
             top: 2rem;
             right: 2rem;
             z-index: 1000;
         }
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1rem;
-        }
-        nav a {
-            color: #e5e7eb;
+        .nav-item {
+            display: block;
+            padding: 1rem 1.8rem;
+            color: var(--text-primary);
             text-decoration: none;
-            padding: 0.8rem 1.5rem;
             border-radius: 50px;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        nav a:hover { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
-        section {
-            padding: 5rem 0;
-            scroll-margin-top: 8rem;
-        }
-        .section-title {
-            font-size: 3rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 3rem;
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .skills-grid, .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .card {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.4s ease;
+            font-weight: 500;
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        .card::before {
+        .nav-item::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981);
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
         }
-        .card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: #3b82f6;
-            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3);
+        .nav-item:hover::before { left: 100%; }
+        .nav-item:hover { 
+            color: var(--accent-1);
+            border-color: var(--accent-1);
+            transform: translateX(10px);
         }
-        .skill-icon { font-size: 3rem; color: #3b82f6; margin-bottom: 1rem; }
-        .project-links { margin-top: 1.5rem; }
-        .project-links a {
-            color: #3b82f6;
-            margin-right: 1rem;
-            font-weight: 500;
+        /* Sections */
+        section { padding: 8rem 0; }
+        .section-title {
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
         }
+        .section-title::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.3em;
+            color: var(--accent-1);
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            opacity: 0.6;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        /* Skills avec progress bars animées */
+        .skill-bar {
+            background: rgba(255,255,255,0.05);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
+            border-radius: 4px;
+            width: 0%;
+            transition: width 2s ease;
+        }
+        /* Timeline 3D */
         .timeline {
             position: relative;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
             top: 0;
             bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--accent-1), var(--accent-3));
             transform: translateX(-50%);
+            box-shadow: 0 0 20px var(--accent-1);
         }
         .timeline-item {
             display: flex;
-            margin: 2rem 0;
-            position: relative;
+            margin: 4rem 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
         }
+        .timeline-item.animate { opacity: 1; transform: translateY(0); }
         .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+        .timeline-badge {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-1);
+            border: 4px solid var(--bg-primary);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px var(--accent-1);
+        }
         .timeline-content {
-            background: rgba(15, 23, 42, 0.9);
-            padding: 2rem;
-            border-radius: 15px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 20px;
             margin: 0 2rem;
             flex: 1;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            border: 1px solid var(--border-glow);
+            position: relative;
         }
-        .timeline-date {
-            font-weight: 600;
-            color: #3b82f6;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
+        /* Footer */
         footer {
-            background: rgba(15, 23, 42, 0.9);
+            background: var(--bg-secondary);
             text-align: center;
-            padding: 3rem 0;
-            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-glow);
         }
+        /* Responsive */
         @media (max-width: 768px) {
-            header { flex-direction: column; text-align: center; }
-            nav { position: static; margin-top: 2rem; }
-            nav ul { flex-direction: column; }
-            .timeline::before { left: 1rem; }
-            .timeline-item { flex-direction: column; }
-            .timeline-item:nth-child(odd) { flex-direction: column; }
-            .timeline-content { margin: 1rem 0 0 3rem; }
+            .cursor, .cursor-follower { display: none; }
+            body { cursor: default; }
+            .timeline::before { left: 2rem; }
+            .timeline-item { flex-direction: column !important; }
+            .timeline-content { margin: 2rem 0 0 4rem !important; }
         }
-        .scroll-smooth { scroll-behavior: smooth; }
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
-<body class="scroll-smooth">
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <!-- Particules -->
+    <canvas id="particles"></canvas>
+
     <nav>
-        <ul>
-            <li><a href="#accueil"><i class="fas fa-home"></i> Accueil</a></li>
-            <li><a href="#apropos"><i class="fas fa-user"></i> À propos</a></li>
-            <li><a href="#competences"><i class="fas fa-code"></i> Compétences</a></li>
-            <li><a href="#projets"><i class="fas fa-project-diagram"></i> Projets</a></li>
-            <li><a href="#experience"><i class="fas fa-briefcase"></i> Expérience</a></li>
-            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-        </ul>
+        <a href="#accueil" class="nav-item"><i class="fas fa-home"></i> Accueil</a>
+        <a href="#apropos" class="nav-item"><i class="fas fa-user"></i> À propos</a>
+        <a href="#competences" class="nav-item"><i class="fas fa-layer-group"></i> Skills</a>
+        <a href="#projets" class="nav-item"><i class="fas fa-cubes"></i> Projets</a>
+        <a href="#experience" class="nav-item"><i class="fas fa-road"></i> Parcours</a>
+        <a href="#contact" class="nav-item"><i class="fas fa-paper-plane"></i> Contact</a>
     </nav>
 
     <header id="accueil">
         <div class="container">
-            <div class="hero-content">
-                <h1>MICHOU TWITCH</h1>
-                <p>Développeur Fullstack | Spécialiste FiveM & AI Local | Automatisation n8n</p>
-                <a href="#projets" class="cta-btn"><i class="fas fa-rocket"></i> Voir mes projets</a>
+            <div class="hero-content reveal">
+                <h1 class="hero-title">MICHOU TWITCH</h1>
+                <p class="hero-subtitle">Développeur Fullstack | Architecte AI Local | Expert FiveM & Automations</p>
+                <a href="#projets" class="cta-btn glass-card hover-cursor">
+                    <i class="fas fa-rocket"></i> Explorer Projets
+                </a>
             </div>
         </div>
     </header>
 
-    <section id="apropos">
+    <section id="apropos" class="reveal">
         <div class="container">
-            <h2 class="section-title">À propos de moi</h2>
-            <div class="card" style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <p>Étudiant en BTS SIO 2e année au Lycée Fulbert (Chartres), passionné par le développement web, les serveurs game (FiveM/GTA5), l'IA locale (vLLM, llama.cpp) et les automatisations complexes (n8n, TikTok pipelines). Basé à Orléans, je construis des UIs custom, optimise des serveurs Linux et déploie des modèles AI en prod.</p>
-                <div style="margin-top: 2rem;">
-                    <span style="background: rgba(59,130,246,0.2); padding: 0.5rem 1rem; border-radius: 20px; margin: 0 0.5rem; font-weight: 600;">Orléans, France</span>
-                    <span style="background: rgba(16,185,129,0.2); padding: 0.5rem 1rem; border-radius: 20px; margin: 0 0.5rem; font-weight: 600;">Disponible Freelance</span>
-                </div>
+            <h2 class="section-title" data-text="Qui suis-je ?">À propos</h2>
+            <div class="glass-card" style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; line-height: 1.8;">BTS SIO 2e année (Lycée Fulbert, Chartres). Spécialiste UIs FiveM custom, déploiements AI locaux multi-GPU (vLLM/llama.cpp), pipelines n8n pour TikTok/YouTube. Linux hardcore, hardware tuning, serveurs game scalables. Basé Orléans, freelance disponible.</p>
             </div>
         </div>
     </section>
 
     <section id="competences">
         <div class="container">
-            <h2 class="section-title">Compétences</h2>
-            <div class="skills-grid">
-                <div class="card">
-                    <div class="skill-icon"><i class="fab fa-html-css3"></i></div>
-                    <h3>Frontend</h3>
-                    <p>HTML5, CSS3 (Glassmorphism, Animations), JavaScript ES6+, React/Vue pour UIs FiveM</p>
+            <h2 class="section-title" data-text="Expertise technique">Compétences Pro</h2>
+            <div class="content-grid">
+                <div class="glass-card reveal">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-1);">Frontend & UIs</h3>
+                    <div>HTML5/CSS3/JS • React • FiveM NUI • Glassmorphism</div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="98%"></div></div>
                 </div>
-                <div class="card">
-                    <div class="skill-icon"><i class="fas fa-server"></i></div>
-                    <h3>Backend & Scripting</h3>
-                    <p>Node.js, Lua (FiveM/ESX), Python, Bash, SQL, APIs REST/OAuth2</p>
+                <div class="glass-card reveal">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-3);">AI/ML Local</h3>
+                    <div>vLLM • llama.cpp • Qwen • Multi-GPU • APIs Ollama</div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div>
                 </div>
-                <div class="card">
-                    <div class="skill-icon"><i class="fas fa-robot"></i></div>
-                    <h3>IA & ML Local</h3>
-                    <p>vLLM, llama.cpp, Qwen models, Quantization, Multi-GPU, Ollama APIs</p>
+                <div class="glass-card reveal">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-2);">DevOps & Scripting</h3>
+                    <div>Debian • n8n • Lua/ESX • Docker • Tailscale</div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="92%"></div></div>
                 </div>
-                <div class="card">
-                    <div class="skill-icon"><i class="fas fa-cogs"></i></div>
-                    <h3>DevOps & Sysadmin</h3>
-                    <p>Debian/Linux, Docker, n8n automations, ngrok/Tailscale, SSH tunneling</p>
-                </div>
-                <div class="card">
-                    <div class="skill-icon"><i class="fas fa-gamepad"></i></div>
-                    <h3>Game Dev</h3>
-                    <p>FiveM modding (RageUI, NUI), GTA5 servers, Custom dashboards</p>
-                </div>
-                <div class="card">
-                    <div class="skill-icon"><i class="fas fa-tools"></i></div>
-                    <h3>Outils</h3>
-                    <p>VS Code, Git, yt-dlp, ox_inventory, ESX Framework, Hardware tuning (GPU/thermal)</p>
+                <div class="glass-card reveal">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-1);">Game Servers</h3>
+                    <div>FiveM Modding • RageUI • ox_inventory • Custom HUDs</div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="97%"></div></div>
                 </div>
             </div>
         </div>
@@ -245,38 +366,30 @@
 
     <section id="projets">
         <div class="container">
-            <h2 class="section-title">Projets Phares</h2>
-            <div class="projects-grid">
-                <div class="card">
-                    <h3><i class="fas fa-car"></i> Garage FiveM ESX</h3>
-                    <p>UI complète pour gestion véhicules : spawn/sortie, plaques, catégories, modélisation. HTML/CSS/JS + Lua client/server.</p>
-                    <div class="project-links">
-                        <a href="#"><i class="fab fa-github"></i> GitHub</a>
-                        <a href="#"><i class="fas fa-eye"></i> Démo</a>
+            <h2 class="section-title" data-text="Réalisations concrètes">Projets Premium</h2>
+            <div class="content-grid">
+                <div class="glass-card reveal">
+                    <h3><i class="fas fa-car-side"></i> Garage FiveM Pro</h3>
+                    <p>Interface complète spawn/gestion véhicules. Responsive NUI + Lua optimisé.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="#" class="nav-item" style="display: inline-block; margin-right: 1rem;">GitHub</a>
+                        <a href="#" class="nav-item" style="display: inline-block;">Vidéo Démo</a>
                     </div>
                 </div>
-                <div class="card">
-                    <h3><i class="fas fa-video"></i> Auto TikTok n8n</h3>
-                    <p>Pipeline automation : download YouTube (yt-dlp), édition, upload TikTok via API. Intégration OAuth2 + scheduling.</p>
-                    <div class="project-links">
-                        <a href="#"><i class="fab fa-github"></i> GitHub</a>
-                        <a href="#"><i class="fas fa-eye"></i> Démo</a>
+                <div class="glass-card reveal">
+                    <h3><i class="fas fa-video"></i> TikTok Automation Pipeline</h3>
+                    <p>n8n + yt-dlp + API TikTok. Upload auto 100+ vidéos/jour.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="#" class="nav-item" style="display: inline-block; margin-right: 1rem;">GitHub</a>
+                        <a href="#" class="nav-item" style="display: inline-block;">Dashboard</a>
                     </div>
                 </div>
-                <div class="card">
-                    <h3><i class="fas fa-brain"></i> Serveur AI Local Multi-GPU</h3>
-                    <p>Cluster vLLM + llama.cpp : Qwen models quantisés, API scalable, VRAM opti, remote access Tailscale.</p>
-                    <div class="project-links">
-                        <a href="#"><i class="fab fa-github"></i> GitHub</a>
-                        <a href="#"><i class="fas fa-eye"></i> Démo</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-users"></i> Gang Management Tablet</h3>
-                    <p>Tablette boss FiveM : membres, hiérarchie, notifications push. RageUI + custom NUI responsive.</p>
-                    <div class="project-links">
-                        <a href="#"><i class="fab fa-github"></i> GitHub</a>
-                        <a href="#"><i class="fas fa-eye"></i> Démo</a>
+                <div class="glass-card reveal">
+                    <h3><i class="fas fa-microchip"></i> AI Cluster Multi-GPU</h3>
+                    <p>Serveur vLLM scalable. 4x RTX + quantization Q4/Q8.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="#" class="nav-item" style="display: inline-block; margin-right: 1rem;">Config</a>
+                        <a href="#" class="nav-item" style="display: inline-block;">Benchmarks</a>
                     </div>
                 </div>
             </div>
@@ -285,34 +398,30 @@
 
     <section id="experience">
         <div class="container">
-            <h2 class="section-title">Expérience</h2>
+            <h2 class="section-title" data-text="Mon parcours">Expérience</h2>
             <div class="timeline">
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
+                    <div class="timeline-badge"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">2025-2026</div>
-                        <h3>BTS SIO 2e Année - Lycée Fulbert, Chartres</h3>
-                        <p>Spécialisation SLAM : Développement, Linux, Bases de données, Projets AI/Cyber.</p>
+                        <div style="color: var(--accent-1); font-weight: 600; font-size: 0.95rem;">2025-2026</div>
+                        <h3>BTS SIO 2e Année • Lycée Fulbert</h3>
+                        <p>SLAM : Dev Web/API, Linux Sysadmin, Projets AI/Cybersecurity.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
+                    <div class="timeline-badge"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Été 2025</div>
-                        <h3>Stage Automatisation TikTok (8 semaines)</h3>
-                        <p>Pipeline n8n pour upload vidéos : APIs, scheduling, monitoring. Gratification 522€.</p>
+                        <div style="color: var(--accent-3); font-weight: 600; font-size: 0.95rem;">Été 2025</div>
+                        <h3>Stage n8n TikTok (8 sem.)</h3>
+                        <p>Automation complète vidéos YouTube → TikTok. APIs + Monitoring.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
+                    <div class="timeline-badge"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Été 2024</div>
-                        <h3>Stage IA Locale</h3>
-                        <p>Déploiement modèles LLMs : vLLM, quantization, serveurs multi-nœuds.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2024-Présent</div>
-                        <h3>Freelance FiveM Modding</h3>
-                        <p>Garages, tablettes gang, HUDs custom pour serveurs GTA5 RP.</p>
+                        <div style="color: var(--accent-2); font-weight: 600; font-size: 0.95rem;">2024-Présent</div>
+                        <h3>Freelance FiveM Lead</h3>
+                        <p>10+ serveurs : Garages, gangs, HUDs custom. 500h+ Lua/HTML.</p>
                     </div>
                 </div>
             </div>
@@ -321,14 +430,14 @@
 
     <section id="contact">
         <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
-                <p>Prêt pour ton projet ? Envoie-moi un message !</p>
-                <div style="margin-top: 2rem; font-size: 1.5rem;">
-                    <a href="mailto:contact@michou-twitch.fr" style="color: #3b82f6; margin: 0 1rem;"><i class="fas fa-envelope"></i></a>
-                    <a href="https://twitch.tv/michou" style="color: #9146ff; margin: 0 1rem;"><i class="fab fa-twitch"></i></a>
-                    <a href="https://github.com/michou-twitch" style="color: #181717; margin: 0 1rem;"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/michou-twitch" style="color: #0a66c2; margin: 0 1rem;"><i class="fab fa-linkedin"></i></a>
+            <h2 class="section-title" data-text="Prêt à collaborer ?">Contact Pro</h2>
+            <div class="glass-card reveal" style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.3rem; margin-bottom: 2rem;">Ton projet mérite le meilleur. Discutons.</p>
+                <div style="font-size: 1.8rem; gap: 2rem; display: flex; justify-content: center; flex-wrap: wrap;">
+                    <a href="mailto:contact@michou-twitch.fr" style="color: var(--accent-1);"><i class="fas fa-envelope"></i></a>
+                    <a href="#" style="color: #9146ff;"><i class="fab fa-twitch"></i></a>
+                    <a href="#" style="color: #181717;"><i class="fab fa-github"></i></a>
+                    <a href="#" style="color: #0a66c2;"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
@@ -336,24 +445,98 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 MICHOU TWITCH. Tous droits réservés. | Développé avec <i class="fas fa-heart" style="color: #ef4444;"></i> en HTML/CSS/JS pur.</p>
+            <p>MICHOU TWITCH © 2026 | Crafted with <i class="fas fa-bolt" style="color: var(--accent-3);"></i> Precision</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll pour nav
+        // Cursor Magnétique
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Aimantation sur hover elements
+            const hovered = e.target.closest('.glass-card, .nav-item, .cta-btn');
+            if (hovered) {
+                const rect = hovered.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                mouseX += (centerX - mouseX) * 0.1;
+                mouseY += (centerY - mouseY) * 0.1;
+                follower.classList.add('hover-cursor');
+            } else {
+                follower.classList.remove('hover-cursor');
+            }
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            follower.style.left = (cursorX - 30) + 'px';
+            follower.style.top = (cursorY - 30) + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Particules Canvas
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const particles = [];
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 20 + 15) + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 25000);
+        }
+
+        setInterval(createParticle, 300);
+
+        // Scroll Animations & Skills Progress
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Skills bars
+                    if (entry.target.querySelector('.skill-progress')) {
+                        const bars = entry.target.querySelectorAll('.skill-progress');
+                        bars.forEach(bar => {
+                            bar.style.width = bar.dataset.width;
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal, section').forEach(el => observer.observe(el));
+
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', (e) => {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(anchor.getAttribute('href'));
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
-        // Parallax hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('header');
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         });
     </script>
 </body>
