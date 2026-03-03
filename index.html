@@ -3,232 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MICHOU TWITCH - Portfolio Pro 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>MICHOU TWITCH — Développeur | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-primary: #0a0e1a;
-            --bg-secondary: #0f1625;
-            --accent-1: #00d4ff;
-            --accent-2: #7c3aed;
-            --accent-3: #10ff88;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --glass-bg: rgba(15, 22, 37, 0.4);
-            --border-glow: rgba(0, 212, 255, 0.3);
+            --bg: #fafbff;
+            --bg-dark: #0a0f1e;
+            --surface: rgba(255,255,255,0.85);
+            --glass: rgba(255,255,255,0.1);
+            --text: #1a202c;
+            --text-light: #64748b;
+            --accent: #1e40af;
+            --accent-gold: #d97706;
+            --accent-soft: #3b82f6;
+            --border: rgba(30,64,175,0.1);
+            --shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+            --shadow-hover: 0 35px 70px -15px rgba(30,64,175,0.2);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, #f1f5f9 100%);
+            color: var(--text);
+            line-height: 1.7;
             overflow-x: hidden;
-            cursor: none;
         }
-        /* Custom Cursor Magnétique */
-        .cursor {
+        body.dark { 
+            --bg: var(--bg-dark);
+            --surface: rgba(15,23,42,0.9);
+            --glass: rgba(255,255,255,0.05);
+            --text: #f1f5f9;
+            --text-light: #94a3b8;
+            --shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
+            --shadow-hover: 0 35px 70px -15px rgba(255,255,255,0.1);
+        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+        
+        /* Navigation minimal */
+        nav {
             position: fixed;
-            width: 24px;
-            height: 24px;
-            background: radial-gradient(circle, var(--accent-1) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform 0.1s ease;
+            top: 2rem;
+            right: 2rem;
+            backdrop-filter: blur(20px);
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 0.5rem;
+            z-index: 1000;
         }
-        .cursor-follower {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            border: 2px solid var(--accent-1);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0.3;
-            transition: all 0.3s ease;
+        .nav-list {
+            display: flex;
+            gap: 0;
+            list-style: none;
         }
-        .hover-cursor { transform: scale(1.5) !important; }
-        /* Particules Background */
-        #particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
+        .nav-item {
+            padding: 0.75rem 1.5rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
-        .particle {
+        .nav-item::after {
+            content: '';
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--accent-1);
-            border-radius: 50%;
-            animation: float 20s infinite linear;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        .nav-item:hover {
+            color: var(--accent);
+            background: var(--glass);
+            transform: translateY(-2px);
         }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; position: relative; }
-        /* Header Hero */
-        header {
+        .nav-item:hover::after { width: 80%; }
+        
+        /* Hero Section */
+        #hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .hero-content {
-            max-width: 700px;
+        .hero-main {
+            max-width: 600px;
         }
         .hero-title {
-            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-size: clamp(3rem, 6vw, 5rem);
             font-weight: 800;
-            line-height: 0.9;
-            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            line-height: 0.95;
+            background: linear-gradient(135deg, var(--accent), var(--accent-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1.5rem;
-            position: relative;
-        }
-        .hero-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-            border-radius: 2px;
         }
         .hero-subtitle {
-            font-size: 1.4rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 600px;
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
         }
-        /* Néomorphisme 3D Cards */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(30px);
-            border: 1px solid var(--border-glow);
-            border-radius: 28px;
+        .cta-primary {
+            background: var(--accent);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .cta-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            background: #1e3a8a;
+        }
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1.2s 0.3s forwards;
+        }
+        
+        /* Glass Cards Élégantes */
+        .glass-surface {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
             padding: 2.5rem;
-            position: relative;
+            box-shadow: var(--shadow);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 
-                0 25px 50px -12px rgba(0,0,0,0.5),
-                inset 0 1px 0 rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
         }
-        .glass-card::before {
+        .glass-surface::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            border-radius: 28px;
-            padding: 2px;
-            background: linear-gradient(45deg, var(--accent-1), var(--accent-2), var(--accent-3));
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-soft), transparent);
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transform: scaleX(0);
+            transition: all 0.5s ease;
         }
-        .glass-card:hover {
-            transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
-            box-shadow: 
-                0 50px 100px -20px rgba(0,212,255,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.2);
+        .glass-surface:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
         }
-        .glass-card:hover::before { opacity: 1; }
-        /* Nav Pro */
-        nav {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1000;
+        .glass-surface:hover::before {
+            opacity: 1;
+            transform: scaleX(1);
         }
-        .nav-item {
-            display: block;
-            padding: 1rem 1.8rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        .nav-item:hover::before { left: 100%; }
-        .nav-item:hover { 
-            color: var(--accent-1);
-            border-color: var(--accent-1);
-            transform: translateX(10px);
-        }
+        
         /* Sections */
-        section { padding: 8rem 0; }
-        .section-title {
-            font-size: clamp(2.5rem, 4vw, 4rem);
-            font-weight: 700;
+        section {
+            padding: 6rem 0;
+            scroll-margin-top: 8rem;
+        }
+        .section-header {
             text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
+            max-width: 800px;
+            margin: 0 auto 4rem;
         }
-        .section-title::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 120%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.3em;
-            color: var(--accent-1);
+        .section-title {
+            font-size: clamp(2.25rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.2rem;
             font-weight: 300;
-            letter-spacing: 0.3em;
-            opacity: 0.6;
         }
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
+        
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem; }
+        
+        /* Skills avec icons */
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            padding: 1.5rem;
+            border-radius: 16px;
+            background: var(--glass);
+            transition: all 0.3s ease;
         }
-        /* Skills avec progress bars animées */
-        .skill-bar {
-            background: rgba(255,255,255,0.05);
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 1rem;
+        .skill-item:hover {
+            background: rgba(30,64,175,0.08);
+            transform: translateX(8px);
         }
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
-            border-radius: 4px;
-            width: 0%;
-            transition: width 2s ease;
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent);
+            color: white;
+            font-size: 1.5rem;
         }
-        /* Timeline 3D */
+        
+        /* Timeline Chic */
         .timeline {
-            position: relative;
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
         }
         .timeline::before {
             content: '';
@@ -236,307 +242,343 @@
             top: 0;
             bottom: 0;
             left: 50%;
-            width: 4px;
-            background: linear-gradient(to bottom, var(--accent-1), var(--accent-3));
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-soft), transparent);
             transform: translateX(-50%);
-            box-shadow: 0 0 20px var(--accent-1);
         }
         .timeline-item {
             display: flex;
             margin: 4rem 0;
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+            transform: translateY(40px);
         }
-        .timeline-item.animate { opacity: 1; transform: translateY(0); }
         .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
-        .timeline-badge {
-            width: 20px;
-            height: 20px;
-            background: var(--accent-1);
-            border: 4px solid var(--bg-primary);
-            border-radius: 50%;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 20px var(--accent-1);
-        }
         .timeline-content {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            padding: 2.5rem;
+            background: var(--surface);
+            padding: 2rem 2.5rem;
             border-radius: 20px;
-            margin: 0 2rem;
             flex: 1;
-            border: 1px solid var(--border-glow);
-            position: relative;
+            margin: 0 2rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
         }
+        .timeline-date {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Projets Cards */
+        .project-card {
+            position: relative;
+            height: 280px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--surface);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-hover);
+        }
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, var(--glass));
+            padding: 2rem 2rem 2.5rem;
+            transition: all 0.3s ease;
+        }
+        
         /* Footer */
         footer {
-            background: var(--bg-secondary);
+            padding: 4rem 0 2rem;
             text-align: center;
-            padding: 4rem 0;
-            border-top: 1px solid var(--border-glow);
+            color: var(--text-light);
         }
+        
+        /* Dark Toggle */
+        .dark-toggle {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .dark-toggle:hover { background: var(--accent-soft); color: white; }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
         /* Responsive */
-        @media (max-width: 768px) {
-            .cursor, .cursor-follower { display: none; }
-            body { cursor: default; }
-            .timeline::before { left: 2rem; }
+        @media (max-width: 1024px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .timeline::before { left: 3rem; }
             .timeline-item { flex-direction: column !important; }
-            .timeline-content { margin: 2rem 0 0 4rem !important; }
+            .timeline-item:nth-child(odd) { flex-direction: column !important; }
+            .timeline-content { margin: 1rem 0 0 4.5rem !important; }
         }
-        /* Scroll Animations */
+        @media (max-width: 768px) {
+            nav { right: 1rem; top: 1rem; }
+            .dark-toggle { left: 1rem; top: 1rem; }
+            #hero { flex-direction: column; text-align: center; gap: 3rem; }
+        }
+        
+        /* Scroll Reveal */
         .reveal {
             opacity: 0;
-            transform: translateY(60px);
-            transition: all 1s ease;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-toggle" onclick="toggleDark()" title="Mode sombre">
+        <i class="fas fa-moon"></i>
+    </button>
     
-    <!-- Particules -->
-    <canvas id="particles"></canvas>
-
     <nav>
-        <a href="#accueil" class="nav-item"><i class="fas fa-home"></i> Accueil</a>
-        <a href="#apropos" class="nav-item"><i class="fas fa-user"></i> À propos</a>
-        <a href="#competences" class="nav-item"><i class="fas fa-layer-group"></i> Skills</a>
-        <a href="#projets" class="nav-item"><i class="fas fa-cubes"></i> Projets</a>
-        <a href="#experience" class="nav-item"><i class="fas fa-road"></i> Parcours</a>
-        <a href="#contact" class="nav-item"><i class="fas fa-paper-plane"></i> Contact</a>
+        <ul class="nav-list">
+            <li><a href="#hero" class="nav-item">Accueil</a></li>
+            <li><a href="#apropos" class="nav-item">À propos</a></li>
+            <li><a href="#competences" class="nav-item">Skills</a></li>
+            <li><a href="#projets" class="nav-item">Projets</a></li>
+            <li><a href="#experience" class="nav-item">Expérience</a></li>
+            <li><a href="#contact" class="nav-item">Contact</a></li>
+        </ul>
     </nav>
 
-    <header id="accueil">
-        <div class="container">
-            <div class="hero-content reveal">
-                <h1 class="hero-title">MICHOU TWITCH</h1>
-                <p class="hero-subtitle">Développeur Fullstack | Architecte AI Local | Expert FiveM & Automations</p>
-                <a href="#projets" class="cta-btn glass-card hover-cursor">
-                    <i class="fas fa-rocket"></i> Explorer Projets
-                </a>
-            </div>
+    <section id="hero">
+        <div class="hero-main">
+            <h1 class="hero-title">MICHOU TWITCH</h1>
+            <p class="hero-subtitle">Développeur Fullstack spécialisé FiveM, AI local et automatisations n8n. BTS SIO 2e année.</p>
+            <a href="#projets" class="cta-primary">
+                <i class="fas fa-arrow-right"></i>
+                Voir mes projets
+            </a>
         </div>
-    </header>
+        <div class="hero-image">
+            <!-- Ajoute ta photo pro ici 400x500px -->
+            <div style="width: 350px; height: 450px; border-radius: 24px; background: linear-gradient(135deg, var(--accent), var(--accent-gold)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; opacity: 0.8;">Photo Pro<br>(350x450px)</div>
+        </div>
+    </section>
 
     <section id="apropos" class="reveal">
         <div class="container">
-            <h2 class="section-title" data-text="Qui suis-je ?">À propos</h2>
-            <div class="glass-card" style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <p style="font-size: 1.2rem; line-height: 1.8;">BTS SIO 2e année (Lycée Fulbert, Chartres). Spécialiste UIs FiveM custom, déploiements AI locaux multi-GPU (vLLM/llama.cpp), pipelines n8n pour TikTok/YouTube. Linux hardcore, hardware tuning, serveurs game scalables. Basé Orléans, freelance disponible.</p>
+            <div class="section-header">
+                <h2 class="section-title">À propos</h2>
+                <p class="section-subtitle">Passionné par le code qui résout des problèmes réels. De Orléans à tes serveurs.</p>
             </div>
-        </div>
-    </section>
-
-    <section id="competences">
-        <div class="container">
-            <h2 class="section-title" data-text="Expertise technique">Compétences Pro</h2>
-            <div class="content-grid">
-                <div class="glass-card reveal">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-1);">Frontend & UIs</h3>
-                    <div>HTML5/CSS3/JS • React • FiveM NUI • Glassmorphism</div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="98%"></div></div>
+            <div class="grid-2">
+                <div class="glass-surface">
+                    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--accent);">Ce que je maîtrise</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-check" style="color: var(--accent-gold); width: 20px;"></i>FiveM NUI/Lua (Garages, Gangs)</li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-check" style="color: var(--accent-gold); width: 20px;"></i>AI Local vLLM/llama.cpp Multi-GPU</li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-check" style="color: var(--accent-gold); width: 20px;"></i>n8n Automations (TikTok pipelines)</li>
+                        <li style="display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-check" style="color: var(--accent-gold); width: 20px;"></i>Linux Sysadmin • Hardware Tuning</li>
+                    </ul>
                 </div>
-                <div class="glass-card reveal">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-3);">AI/ML Local</h3>
-                    <div>vLLM • llama.cpp • Qwen • Multi-GPU • APIs Ollama</div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div>
-                </div>
-                <div class="glass-card reveal">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-2);">DevOps & Scripting</h3>
-                    <div>Debian • n8n • Lua/ESX • Docker • Tailscale</div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="92%"></div></div>
-                </div>
-                <div class="glass-card reveal">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-1);">Game Servers</h3>
-                    <div>FiveM Modding • RageUI • ox_inventory • Custom HUDs</div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="97%"></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projets">
-        <div class="container">
-            <h2 class="section-title" data-text="Réalisations concrètes">Projets Premium</h2>
-            <div class="content-grid">
-                <div class="glass-card reveal">
-                    <h3><i class="fas fa-car-side"></i> Garage FiveM Pro</h3>
-                    <p>Interface complète spawn/gestion véhicules. Responsive NUI + Lua optimisé.</p>
-                    <div style="margin-top: 1.5rem;">
-                        <a href="#" class="nav-item" style="display: inline-block; margin-right: 1rem;">GitHub</a>
-                        <a href="#" class="nav-item" style="display: inline-block;">Vidéo Démo</a>
-                    </div>
-                </div>
-                <div class="glass-card reveal">
-                    <h3><i class="fas fa-video"></i> TikTok Automation Pipeline</h3>
-                    <p>n8n + yt-dlp + API TikTok. Upload auto 100+ vidéos/jour.</p>
-                    <div style="margin-top: 1.5rem;">
-                        <a href="#" class="nav-item" style="display: inline-block; margin-right: 1rem;">GitHub</a>
-                        <a href="#" class="nav-item" style="display: inline-block;">Dashboard</a>
-                    </div>
-                </div>
-                <div class="glass-card reveal">
-                    <h3><i class="fas fa-microchip"></i> AI Cluster Multi-GPU</h3>
-                    <p>Serveur vLLM scalable. 4x RTX + quantization Q4/Q8.</p>
-                    <div style="margin-top: 1.5rem;">
-                        <a href="#" class="nav-item" style="display: inline-block; margin-right: 1rem;">Config</a>
-                        <a href="#" class="nav-item" style="display: inline-block;">Benchmarks</a>
+                <div class="glass-surface">
+                    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--accent);">Ce que je cherche</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">Freelance long-terme ou CDI junior dev après BTS. Projets AI/Game Dev/DevOps. Basé Orléans, mobile France entière.</p>
+                    <div style="margin-top: 2rem;">
+                        <span style="background: rgba(30,64,175,0.1); color: var(--accent); padding: 0.5rem 1.25rem; border-radius: 24px; font-weight: 500; font-size: 0.9rem;">📍 Orléans</span>
+                        <span style="background: rgba(217,119,6,0.1); color: var(--accent-gold); padding: 0.5rem 1.25rem; border-radius: 24px; font-weight: 500; font-size: 0.9rem; margin-left: 0.75rem;">💼 Disponible</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="experience">
+    <section id="competences" class="reveal">
         <div class="container">
-            <h2 class="section-title" data-text="Mon parcours">Expérience</h2>
+            <div class="section-header">
+                <h2 class="section-title">Compétences</h2>
+            </div>
+            <div class="grid-3">
+                <div class="glass-surface skill-item">
+                    <div class="skill-icon"><i class="fab fa-html-css3"></i></div>
+                    <div>
+                        <div style="font-weight: 600; margin-bottom: 0.25rem;">Frontend Mastery</div>
+                        <div style="color: var(--text-light); font-size: 0.95rem;">HTML/CSS/JS • FiveM NUI • Glassmorphism</div>
+                    </div>
+                </div>
+                <div class="glass-surface skill-item">
+                    <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <div style="font-weight: 600; margin-bottom: 0.25rem;">AI Local Expert</div>
+                        <div style="color: var(--text-light); font-size: 0.95rem;">vLLM • llama.cpp • Qwen • Multi-GPU</div>
+                    </div>
+                </div>
+                <div class="glass-surface skill-item">
+                    <div class="skill-icon"><i class="fas fa-cogs"></i></div>
+                    <div>
+                        <div style="font-weight: 600; margin-bottom: 0.25rem;">DevOps & Tools</div>
+                        <div style="color: var(--text-light); font-size: 0.95rem;">n8n • Debian • Tailscale • yt-dlp</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets" class="reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Projets</h2>
+                <p class="section-subtitle">Mes réalisations concrètes qui tournent en prod</p>
+            </div>
+            <div class="grid-2">
+                <div class="project-card">
+                    <div class="project-overlay">
+                        <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Garage FiveM ESX</h3>
+                        <p style="color: var(--text-light); margin-bottom: 1.5rem;">Interface complète spawn/gestion véhicules. NUI responsive + Lua optimisé.</p>
+                        <div style="display: flex; gap: 1rem;">
+                            <a href="#" style="color: var(--accent); font-weight: 500; font-size: 0.9rem;">GitHub</a>
+                            <a href="#" style="color: var(--text-light); font-weight: 500; font-size: 0.9rem;">Vidéo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-overlay">
+                        <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">TikTok Automation</h3>
+                        <p style="color: var(--text-light); margin-bottom: 1.5rem;">Pipeline n8n : YouTube → édition → upload auto TikTok API.</p>
+                        <div style="display: flex; gap: 1rem;">
+                            <a href="#" style="color: var(--accent); font-weight: 500; font-size: 0.9rem;">Dashboard</a>
+                            <a href="#" style="color: var(--text-light); font-weight: 500; font-size: 0.9rem;">Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Expérience</h2>
+            </div>
             <div class="timeline">
-                <div class="timeline-item reveal">
-                    <div class="timeline-badge"></div>
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <div style="color: var(--accent-1); font-weight: 600; font-size: 0.95rem;">2025-2026</div>
-                        <h3>BTS SIO 2e Année • Lycée Fulbert</h3>
-                        <p>SLAM : Dev Web/API, Linux Sysadmin, Projets AI/Cybersecurity.</p>
+                        <div class="timeline-date">2025-2026</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">BTS SIO 2e Année</h3>
+                        <p>Lycée Fulbert, Chartres. Spécialisation SLAM : Dev/API, Linux, AI.</p>
                     </div>
                 </div>
-                <div class="timeline-item reveal">
-                    <div class="timeline-badge"></div>
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <div style="color: var(--accent-3); font-weight: 600; font-size: 0.95rem;">Été 2025</div>
-                        <h3>Stage n8n TikTok (8 sem.)</h3>
-                        <p>Automation complète vidéos YouTube → TikTok. APIs + Monitoring.</p>
+                        <div class="timeline-date">Été 2025</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">Stage Automatisation</h3>
+                        <p>n8n TikTok pipeline. 8 semaines, APIs + monitoring prod.</p>
                     </div>
                 </div>
-                <div class="timeline-item reveal">
-                    <div class="timeline-badge"></div>
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <div style="color: var(--accent-2); font-weight: 600; font-size: 0.95rem;">2024-Présent</div>
-                        <h3>Freelance FiveM Lead</h3>
-                        <p>10+ serveurs : Garages, gangs, HUDs custom. 500h+ Lua/HTML.</p>
+                        <div class="timeline-date">2024-Présent</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">Freelance FiveM</h3>
+                        <p>Garages, tablettes gang, HUDs. 10+ serveurs RP.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="reveal">
         <div class="container">
-            <h2 class="section-title" data-text="Prêt à collaborer ?">Contact Pro</h2>
-            <div class="glass-card reveal" style="max-width: 700px; margin: 0 auto; text-align: center;">
-                <p style="font-size: 1.3rem; margin-bottom: 2rem;">Ton projet mérite le meilleur. Discutons.</p>
-                <div style="font-size: 1.8rem; gap: 2rem; display: flex; justify-content: center; flex-wrap: wrap;">
-                    <a href="mailto:contact@michou-twitch.fr" style="color: var(--accent-1);"><i class="fas fa-envelope"></i></a>
-                    <a href="#" style="color: #9146ff;"><i class="fab fa-twitch"></i></a>
-                    <a href="#" style="color: #181717;"><i class="fab fa-github"></i></a>
-                    <a href="#" style="color: #0a66c2;"><i class="fab fa-linkedin-in"></i></a>
+            <div class="section-header">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-subtitle">Envie de collaborer ? Un message suffit.</p>
+            </div>
+            <div class="glass-surface" style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <div style="font-size: 1.5rem; margin-bottom: 2rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <a href="mailto:contact@michou-twitch.fr" style="color: var(--accent); font-size: 1.8rem; transition: color 0.3s;"><i class="fas fa-envelope"></i></a>
+                    <a href="#" style="color: #9146ff; font-size: 1.8rem;"><i class="fab fa-twitch"></i></a>
+                    <a href="#" style="color: #181717; font-size: 1.8rem;"><i class="fab fa-github"></i></a>
                 </div>
+                <p style="color: var(--text-light);">contact@michou-twitch.fr</p>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>MICHOU TWITCH © 2026 | Crafted with <i class="fas fa-bolt" style="color: var(--accent-3);"></i> Precision</p>
+            <p>&copy; 2026 MICHOU TWITCH. Fait avec précision.</p>
         </div>
     </footer>
 
     <script>
-        // Cursor Magnétique
-        const cursor = document.querySelector('.cursor');
-        const follower = document.querySelector('.cursor-follower');
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            // Aimantation sur hover elements
-            const hovered = e.target.closest('.glass-card, .nav-item, .cta-btn');
-            if (hovered) {
-                const rect = hovered.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                mouseX += (centerX - mouseX) * 0.1;
-                mouseY += (centerY - mouseY) * 0.1;
-                follower.classList.add('hover-cursor');
-            } else {
-                follower.classList.remove('hover-cursor');
-            }
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.15;
-            cursorY += (mouseY - cursorY) * 0.15;
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            
-            follower.style.left = (cursorX - 30) + 'px';
-            follower.style.top = (cursorY - 30) + 'px';
-            requestAnimationFrame(animateCursor);
+        // Dark Mode Toggle
+        function toggleDark() {
+            document.body.classList.toggle('dark');
+            const icon = document.querySelector('.dark-toggle i');
+            icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
         }
-        animateCursor();
-
-        // Particules Canvas
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const particles = [];
-
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDuration = (Math.random() * 20 + 15) + 's';
-            particle.style.animationDelay = Math.random() * 5 + 's';
-            document.body.appendChild(particle);
-            setTimeout(() => particle.remove(), 25000);
-        }
-
-        setInterval(createParticle, 300);
-
-        // Scroll Animations & Skills Progress
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    
-                    // Skills bars
-                    if (entry.target.querySelector('.skill-progress')) {
-                        const bars = entry.target.querySelectorAll('.skill-progress');
-                        bars.forEach(bar => {
-                            bar.style.width = bar.dataset.width;
-                        });
-                    }
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal, section').forEach(el => observer.observe(el));
 
         // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(anchor.getAttribute('href'));
+                const target = document.querySelector(link.getAttribute('href'));
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Resize handler
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        // Scroll Reveal
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Navbar active link
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-item');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
         });
     </script>
 </body>
