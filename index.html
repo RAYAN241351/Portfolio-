@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MICHOU TWITCH | Développeur Fullstack FiveM & AI | Portfolio 2026</title>
-    <meta name="description" content="Développeur spécialisé FiveM modding, AI local (vLLM), automatisations n8n. BTS SIO. Projets live pour serveurs RP & startups. Orléans.">
-    <meta name="keywords" content="FiveM dev, Lua, n8n, vLLM, AI local, portfolio développeur, BTS SIO">
-    <meta property="og:title" content="MICHOU TWITCH - Portfolio Développeur">
-    <meta property="og:description" content="Expert FiveM, AI, automations. Projets live.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <title>Rayan ROUIS | Admin Systèmes & Réseaux · IA · Portfolio 2026</title>
+    <meta name="description" content="Étudiant BTS SIO option SISR. Spécialisé en administration systèmes, réseaux, virtualisation et automatisation IA. Stage OVEGNA SAS. Orléans.">
+    <meta name="keywords" content="BTS SIO SISR, admin réseaux, Debian, Docker, N8N, Ollama, vLLM, portfolio développeur">
+    <meta property="og:title" content="Rayan ROUIS - Portfolio Admin Sys & IA">
+    <meta property="og:description" content="Expert systèmes, réseaux & automatisation IA. Stage OVEGNA. Projets live.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -17,6 +17,7 @@
             --surface: rgba(255,255,255,0.92); --glass: rgba(255,255,255,0.08);
             --text: #1a202c; --text-light: #64748b;
             --accent: #1e40af; --accent-gold: #d97706; --accent-soft: #3b82f6;
+            --accent-green: #10b981;
             --border: rgba(30,64,175,0.12);
             --shadow: 0 25px 50px -12px rgba(0,0,0,0.08);
             --shadow-hover: 0 35px 70px -15px rgba(30,64,175,0.25);
@@ -34,14 +35,12 @@
             --shadow-hover: 0 35px 70px -15px rgba(255,255,255,0.15);
         }
         body.dark .form-group input,
-        body.dark .form-group textarea {
-            background: rgba(15,23,42,0.8);
-            color: #f1f5f9;
-        }
+        body.dark .form-group textarea { background: rgba(15,23,42,0.8); color: #f1f5f9; }
+        body.dark .testimonial { background: rgba(15,23,42,0.6); }
 
         .container { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
 
-        /* ── SCROLL PROGRESS ── */
+        /* SCROLL PROGRESS */
         .scroll-progress {
             position: fixed; top: 0; left: 0; height: 4px; width: 100%;
             background: linear-gradient(90deg, var(--accent), var(--accent-gold));
@@ -49,16 +48,16 @@
             transition: transform 0.1s linear;
         }
 
-        /* ── DARK TOGGLE ── */
+        /* DARK TOGGLE */
         .dark-toggle {
-            position: fixed; top: 2rem; left: 2rem; width: 56px; height: 56px;
-            border-radius: 16px; background: var(--surface); border: 1px solid var(--border);
+            position: fixed; top: 2rem; left: 2rem; width: 52px; height: 52px;
+            border-radius: 14px; background: var(--surface); border: 1px solid var(--border);
             cursor: pointer; display: flex; align-items: center; justify-content: center;
-            font-size: 1.25rem; transition: all 0.3s ease; z-index: 1000; box-shadow: var(--shadow);
+            font-size: 1.2rem; transition: all 0.3s ease; z-index: 1000; box-shadow: var(--shadow);
         }
         .dark-toggle:hover { background: var(--accent-soft); color: white; transform: scale(1.05); }
 
-        /* ── NAV ── */
+        /* NAV */
         nav {
             position: fixed; top: 2rem; right: 2rem;
             backdrop-filter: blur(25px); background: var(--surface);
@@ -67,64 +66,74 @@
         }
         .nav-list { display: flex; gap: 0; list-style: none; flex-wrap: wrap; }
         .nav-item {
-            padding: 0.75rem 1.25rem; color: var(--text); text-decoration: none;
-            font-weight: 500; font-size: 0.9rem; border-radius: 14px;
+            padding: 0.7rem 1.1rem; color: var(--text); text-decoration: none;
+            font-weight: 500; font-size: 0.88rem; border-radius: 14px;
             transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
         }
         .nav-item.active, .nav-item:hover { color: var(--accent); background: rgba(30,64,175,0.08); transform: translateY(-2px); }
 
-        /* ── HERO ── */
-        #hero {
-            min-height: 100vh; display: flex; align-items: center;
-            padding: 8rem 2rem 4rem;
-        }
-        .hero-inner {
-            display: flex; align-items: center;
-            justify-content: space-between; gap: 4rem; width: 100%;
-        }
+        /* HERO */
+        #hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 4rem; }
+        .hero-inner { display: flex; align-items: center; justify-content: space-between; gap: 4rem; width: 100%; }
         .hero-main { flex: 1; max-width: 650px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(16,185,129,0.12); color: var(--accent-green);
+            border: 1px solid rgba(16,185,129,0.25); border-radius: 50px;
+            padding: 0.4rem 1.1rem; font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .hero-badge::before { content: ''; width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
         .hero-title {
             font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 800; line-height: 1;
             background: linear-gradient(135deg, var(--accent), var(--accent-gold));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
         }
-        .hero-subtitle { font-size: 1.2rem; color: var(--text-light); margin-bottom: 3rem; line-height: 1.7; }
-        .hero-photo {
-            flex: 1; display: flex; justify-content: center; align-items: center;
-        }
+        .hero-pseudo { font-size: 1rem; color: var(--text-light); font-weight: 400; margin-bottom: 1.25rem; letter-spacing: 0.02em; }
+        .hero-subtitle { font-size: 1.15rem; color: var(--text-light); margin-bottom: 3rem; line-height: 1.75; }
+        .hero-photo { flex: 1; display: flex; justify-content: center; align-items: center; }
         .hero-photo-placeholder {
-            width: 380px; max-width: 100%; height: 480px; border-radius: 28px;
+            width: 370px; max-width: 100%; height: 460px; border-radius: 28px;
             background: linear-gradient(135deg, var(--accent), var(--accent-gold));
             display: flex; align-items: center; justify-content: center;
             color: rgba(255,255,255,0.9); font-weight: 500; text-align: center;
-            box-shadow: var(--shadow-hover); font-size: 1.1rem; line-height: 2;
+            box-shadow: var(--shadow-hover); font-size: 1rem; line-height: 2.5;
         }
 
-        /* ── CTA BUTTON ── */
+        /* BOUTONS */
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
         .cta-primary {
             display: inline-flex; align-items: center; gap: 0.75rem;
             background: linear-gradient(135deg, var(--accent), var(--accent-soft));
-            color: white; padding: 1.1rem 2.5rem; border-radius: 16px;
-            font-size: 1.05rem; font-weight: 600; text-decoration: none;
-            transition: all 0.3s ease; box-shadow: var(--shadow);
-            border: none; cursor: pointer;
+            color: white; padding: 1rem 2.25rem; border-radius: 14px;
+            font-size: 1rem; font-weight: 600; text-decoration: none;
+            transition: all 0.3s ease; box-shadow: var(--shadow); border: none; cursor: pointer;
         }
         .cta-primary:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+        .cta-secondary {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            background: transparent; color: var(--accent);
+            padding: 1rem 2.25rem; border-radius: 14px;
+            font-size: 1rem; font-weight: 600; text-decoration: none;
+            transition: all 0.3s ease; border: 2px solid var(--accent);
+        }
+        .cta-secondary:hover { background: rgba(30,64,175,0.08); transform: translateY(-4px); }
 
-        /* ── STATS ── */
-        .hero-stats { display: flex; gap: 3rem; margin: 3rem 0; flex-wrap: wrap; }
+        /* STATS */
+        .hero-stats { display: flex; gap: 2.5rem; margin: 3rem 0; flex-wrap: wrap; }
         .stat { text-align: center; }
-        .stat-number { font-size: 2.75rem; font-weight: 800; color: var(--accent); line-height: 1; }
-        .stat-label { color: var(--text-light); font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--accent); line-height: 1; }
+        .stat-label { color: var(--text-light); font-size: 0.82rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
 
-        /* ── SECTIONS ── */
+        /* SECTIONS */
         section { padding: 7rem 0; scroll-margin-top: 6rem; }
         .section-header { text-align: center; max-width: 900px; margin: 0 auto 4rem; }
-        .section-header h2 { font-size: clamp(2.25rem, 5vw, 3.75rem); font-weight: 800; margin-bottom: 1rem; }
-        .section-header p { font-size: 1.2rem; color: var(--text-light); }
+        .section-header h2 { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; }
+        .section-header p { font-size: 1.15rem; color: var(--text-light); }
 
-        /* ── GLASS SURFACE ── */
+        /* GLASS SURFACE */
         .glass-surface {
             background: var(--surface); backdrop-filter: blur(20px);
             border: 1px solid var(--border); border-radius: 24px;
@@ -133,7 +142,7 @@
         }
         .glass-surface:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
 
-        /* ── BENTO GRID CORRIGÉ ── */
+        /* BENTO GRID */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -155,7 +164,24 @@
         }
         .bento-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 
-        /* ── CASE STUDY CARDS ── */
+        /* SKILLS GRID */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 2rem; }
+        .skill-card {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+            padding: 2rem; box-shadow: var(--shadow); transition: all 0.3s ease;
+        }
+        .skill-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .skill-card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .skill-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent); }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .tag {
+            background: rgba(30,64,175,0.08); color: var(--accent);
+            padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500;
+        }
+        .tag.green { background: rgba(16,185,129,0.1); color: var(--accent-green); }
+        .tag.gold { background: rgba(217,119,6,0.1); color: var(--accent-gold); }
+
+        /* CASE STUDY */
         .case-study {
             background: var(--surface); border: 1px solid var(--border);
             border-radius: 24px; overflow: hidden;
@@ -163,32 +189,82 @@
         }
         .case-study:hover { transform: translateY(-12px); box-shadow: var(--shadow-hover); }
         .case-image {
-            height: 220px; background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+            height: 200px; background: linear-gradient(135deg, var(--accent), var(--accent-soft));
             display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 3.5rem; font-weight: 700; gap: 1rem;
+            color: white; font-size: 3rem; font-weight: 700; gap: 1rem; letter-spacing: -0.01em;
         }
         .case-content { padding: 2rem; }
-        .case-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--accent); }
-        .case-tech { display: flex; gap: 0.75rem; margin: 1.5rem 0; flex-wrap: wrap; }
+        .case-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent); }
+        .case-date { font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem; }
+        .case-tech { display: flex; gap: 0.6rem; margin: 1.25rem 0; flex-wrap: wrap; }
         .tech-tag {
             background: rgba(30,64,175,0.1); color: var(--accent);
-            padding: 0.375rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;
+            padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-weight: 500;
         }
-        .case-results { background: rgba(30,64,175,0.05); padding: 1.5rem; border-radius: 16px; margin-top: 1.5rem; }
-        .result-item { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .case-results { background: rgba(30,64,175,0.04); padding: 1.25rem; border-radius: 14px; margin-top: 1.25rem; }
+        .result-item { display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.9rem; }
         .result-number { font-weight: 700; color: var(--accent-gold); }
+        .case-links { margin-top: 1.5rem; display: flex; gap: 1.5rem; }
+        .case-links a { color: var(--accent); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+        .case-links a:last-child { color: var(--text-light); }
 
-        /* ── TESTIMONIALS ── */
+        /* TIMELINE EXPÉRIENCE */
+        .timeline { position: relative; max-width: 900px; margin: 0 auto; }
+        .timeline::before {
+            content: ''; position: absolute; top: 0; bottom: 0; left: 50%;
+            width: 2px; background: linear-gradient(to bottom, var(--accent), rgba(30,64,175,0.1));
+            transform: translateX(-50%);
+        }
+        .tl-item { display: flex; margin: 3rem 0; position: relative; gap: 3rem; }
+        .tl-item:nth-child(even) { flex-direction: row-reverse; }
+        .tl-dot {
+            position: absolute; left: 50%; top: 1.5rem; width: 16px; height: 16px;
+            background: var(--accent); border: 3px solid var(--bg); border-radius: 50%;
+            transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(30,64,175,0.2);
+            z-index: 1;
+        }
+        .tl-content {
+            background: var(--surface); padding: 2rem; border-radius: 20px;
+            flex: 1; border: 1px solid var(--border); box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .tl-content:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+        .tl-date { font-size: 0.82rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+        .tl-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .tl-company { font-size: 0.95rem; color: var(--text-light); margin-bottom: 0.75rem; }
+        .tl-list { padding-left: 1.2rem; color: var(--text-light); font-size: 0.92rem; }
+        .tl-list li { margin-bottom: 0.3rem; }
+
+        /* TESTIMONIALS */
         .testimonial {
             background: var(--glass); border-radius: 20px; padding: 2.5rem;
-            border-left: 4px solid var(--accent); font-style: italic;
+            border-left: 4px solid var(--accent);
             backdrop-filter: blur(10px); border-top: 1px solid var(--border);
             border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
-        .testimonial-author { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; font-style: normal; font-weight: 500; }
-        .stars { color: var(--accent-gold); font-style: normal; }
+        .testimonial:hover { transform: translateY(-6px); }
+        .testimonial p { font-style: italic; line-height: 1.8; }
+        .testimonial-author { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; font-weight: 500; }
+        .stars { color: var(--accent-gold); }
 
-        /* ── CONTACT FORM ── */
+        /* SOFT SKILLS */
+        .softskill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1.5rem; }
+        .softskill-item {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+            padding: 1.5rem; text-align: center; box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .softskill-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+        .softskill-item .ico { font-size: 2rem; margin-bottom: 0.75rem; }
+
+        /* LANGUES */
+        .lang-bar { margin: 0.5rem 0; }
+        .lang-name { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.3rem; }
+        .lang-track { background: rgba(30,64,175,0.1); border-radius: 4px; height: 6px; }
+        .lang-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-soft)); transition: width 1.5s ease; }
+
+        /* CONTACT FORM */
         .contact-form {
             max-width: 700px; margin: 0 auto;
             background: var(--surface); border-radius: 24px;
@@ -207,222 +283,326 @@
         .submit-btn {
             background: linear-gradient(135deg, var(--accent), var(--accent-soft));
             color: white; border: none; padding: 1.25rem 3rem;
-            border-radius: 16px; font-size: 1.1rem; font-weight: 600;
+            border-radius: 16px; font-size: 1.05rem; font-weight: 600;
             cursor: pointer; width: 100%; transition: all 0.3s ease; font-family: inherit;
         }
         .submit-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
         .submit-btn.sending { opacity: 0.7; cursor: wait; }
-        .submit-success { background: #10b981; color: white; padding: 1rem; border-radius: 12px; text-align: center; margin-top: 1rem; }
+        .submit-success { background: var(--accent-green); color: white; padding: 1rem; border-radius: 12px; text-align: center; margin-top: 1rem; }
 
-        /* ── SCROLL REVEAL ── */
+        /* SCROLL REVEAL */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.9s cubic-bezier(0.25,0.46,0.45,0.94); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* ── FOOTER ── */
+        /* FOOTER */
         footer { padding: 4rem 0 2rem; text-align: center; color: var(--text-light); border-top: 1px solid var(--border); }
 
-        /* ── RESPONSIVE ── */
+        /* RESPONSIVE */
         @media (max-width: 1200px) {
-            .bento-grid {
-                grid-template-columns: repeat(6, 1fr);
-                grid-auto-rows: 160px;
-            }
-            .bento-1 { grid-column: 1 / 4; grid-row: 1 / 3; }
-            .bento-2 { grid-column: 4 / 7; grid-row: 1 / 3; }
-            .bento-3 { grid-column: 1 / 3; grid-row: 3 / 4; }
-            .bento-4 { grid-column: 3 / 5; grid-row: 3 / 4; }
-            .bento-5 { grid-column: 5 / 7; grid-row: 3 / 4; }
-            .bento-6 { grid-column: 1 / 4; grid-row: 4 / 5; }
-            .bento-7 { grid-column: 4 / 7; grid-row: 4 / 5; }
+            .bento-grid { grid-template-columns: repeat(6,1fr); grid-auto-rows: 160px; }
+            .bento-1 { grid-column: 1/4; grid-row: 1/3; }
+            .bento-2 { grid-column: 4/7; grid-row: 1/3; }
+            .bento-3 { grid-column: 1/3; grid-row: 3/4; }
+            .bento-4 { grid-column: 3/5; grid-row: 3/4; }
+            .bento-5 { grid-column: 5/7; grid-row: 3/4; }
+            .bento-6 { grid-column: 1/4; grid-row: 4/5; }
+            .bento-7 { grid-column: 4/7; grid-row: 4/5; }
+            .timeline::before { left: 1.5rem; }
+            .tl-item, .tl-item:nth-child(even) { flex-direction: column; gap: 1rem; }
+            .tl-dot { left: 1.5rem; top: 0; }
+            .tl-content { margin-left: 3.5rem; }
         }
         @media (max-width: 768px) {
             nav { top: 1rem; right: 1rem; left: 1rem; }
             .nav-list { justify-content: center; }
-            .nav-item { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+            .nav-item { padding: 0.5rem 0.7rem; font-size: 0.78rem; }
             .dark-toggle { top: 5rem; left: 1rem; width: 44px; height: 44px; }
             #hero { padding: 10rem 1rem 4rem; }
             .hero-inner { flex-direction: column; text-align: center; }
             .hero-subtitle { margin: 0 auto 2rem; }
             .hero-stats { justify-content: center; gap: 2rem; }
-            .hero-photo-placeholder { width: 280px; height: 340px; }
-            .bento-grid {
-                grid-template-columns: 1fr 1fr;
-                grid-auto-rows: auto;
+            .btn-group { justify-content: center; }
+            .hero-photo-placeholder { width: 260px; height: 320px; }
+            .bento-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+            .bento-1,.bento-2,.bento-3,.bento-4,.bento-5,.bento-6,.bento-7 {
+                grid-column: auto; grid-row: auto; min-height: 140px;
             }
-            .bento-1, .bento-2, .bento-3, .bento-4,
-            .bento-5, .bento-6, .bento-7 {
-                grid-column: auto; grid-row: auto;
-                min-height: 150px;
-            }
-            .bento-1 { grid-column: 1 / 3; }
-            .bento-2 { grid-column: 1 / 3; }
+            .bento-1,.bento-2 { grid-column: 1/3; }
         }
         @media (max-width: 480px) {
             .bento-grid { grid-template-columns: 1fr; }
-            .bento-1, .bento-2 { grid-column: 1; }
+            .bento-1,.bento-2 { grid-column: 1; }
         }
     </style>
 </head>
 <body>
     <div class="scroll-progress" id="progress"></div>
-    <button class="dark-toggle" onclick="toggleDark()" title="Mode sombre/clair"><i class="fas fa-moon"></i></button>
+    <button class="dark-toggle" onclick="toggleDark()" title="Thème sombre/clair"><i class="fas fa-moon"></i></button>
 
     <nav>
         <ul class="nav-list">
             <li><a href="#hero" class="nav-item">Home</a></li>
-            <li><a href="#apropos" class="nav-item">About</a></li>
+            <li><a href="#apropos" class="nav-item">À propos</a></li>
             <li><a href="#competences" class="nav-item">Skills</a></li>
-            <li><a href="#projets" class="nav-item">Case Studies</a></li>
-            <li><a href="#temoignages" class="nav-item">Témoignages</a></li>
+            <li><a href="#projets" class="nav-item">Projets</a></li>
+            <li><a href="#experience" class="nav-item">Expérience</a></li>
+            <li><a href="#temoignages" class="nav-item">Avis</a></li>
             <li><a href="#contact" class="nav-item">Contact</a></li>
         </ul>
     </nav>
 
+    <!-- ═══════════════ HERO ═══════════════ -->
     <section id="hero">
         <div class="container">
             <div class="hero-inner">
                 <div class="hero-main">
-                    <h1 class="hero-title">MICHOU TWITCH</h1>
-                    <p class="hero-subtitle">Développeur Fullstack | Expert FiveM/ESX | AI Local vLLM | Automatisation n8n. BTS SIO 2e année. Projets live 24/7.</p>
+                    <div class="hero-badge"><span>Disponible pour stage / alternance</span></div>
+                    <h1 class="hero-title">Rayan ROUIS</h1>
+                    <p class="hero-pseudo">aka MICHOU TWITCH · Orléans, France · <a href="mailto:rouis.rayan2005@gmail.com" style="color:var(--accent-soft);">rouis.rayan2005@gmail.com</a></p>
+                    <p class="hero-subtitle">
+                        Étudiant BTS SIO option SISR — Réseau dans le sang, geek assumé.<br>
+                        Je démonte, teste, corrige et reteste tout : systèmes, réseaux, IA locale, automatisation.
+                    </p>
                     <div class="hero-stats">
                         <div class="stat">
-                            <div class="stat-number" data-target="500">0</div>
-                            <div class="stat-label">Heures Code</div>
+                            <div class="stat-number" data-target="2">0</div>
+                            <div class="stat-label">Stages</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-number" data-target="15">0</div>
-                            <div class="stat-label">Projets Live</div>
+                            <div class="stat-number" data-target="8">0</div>
+                            <div class="stat-label">Semaines OVEGNA</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-number" data-target="10">0</div>
-                            <div class="stat-label">Serveurs FiveM</div>
+                            <div class="stat-number" data-target="3">0</div>
+                            <div class="stat-label">Langues</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-target="5">0</div>
+                            <div class="stat-label">Stacks maîtrisées</div>
                         </div>
                     </div>
-                    <a href="#projets" class="cta-primary">
-                        <i class="fas fa-rocket"></i> Voir Case Studies
-                    </a>
+                    <div class="btn-group">
+                        <a href="#projets" class="cta-primary"><i class="fas fa-rocket"></i> Voir mes projets</a>
+                        <a href="CV_Rayan_Rouis-1.pdf" class="cta-secondary" download><i class="fas fa-download"></i> Mon CV</a>
+                    </div>
                 </div>
                 <div class="hero-photo">
-                    <!-- Remplace par : <img src="photo.jpg" alt="MICHOU TWITCH" style="width:380px;border-radius:28px;"> -->
-                    <div class="hero-photo-placeholder">📸<br>Ta Photo Pro<br>380×480px</div>
+                    <!-- Remplace par : <img src="photo.jpg" alt="Rayan ROUIS" style="width:370px;border-radius:28px;box-shadow:var(--shadow-hover);"> -->
+                    <div class="hero-photo-placeholder">📸<br>Ta Photo Pro<br>370×460px</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ═══════════════ À PROPOS / BENTO ═══════════════ -->
     <section id="apropos" class="reveal">
         <div class="container">
             <div class="section-header">
                 <h2>Pourquoi moi ?</h2>
-                <p>Tes serveurs tournent H24 sans downtime. C'est mon ADN.</p>
+                <p>Mes serveurs, réseaux et clusters IA tournent H24. C'est mon ADN.</p>
             </div>
             <div class="bento-grid">
                 <div class="bento-item bento-1">
-                    <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">🎮 FiveM Mastery</h3>
-                    <p style="color: var(--text-light);">Garages custom, tablettes gang, HUDs realtime. 500h+ Lua/NUI.</p>
+                    <h3 style="font-size:1.55rem;margin-bottom:0.75rem;">🧠 Profil</h3>
+                    <p style="color:var(--text-light);font-size:0.95rem;line-height:1.7;">
+                        Passionné d'informatique, je maîtrise les environnements systèmes et réseaux. 
+                        J'apprends vite et j'adore résoudre des incidents complexes en conditions réelles.
+                    </p>
                 </div>
-                <div class="bento-item bento-2" style="background: linear-gradient(135deg, var(--accent), var(--accent-soft)); color: white; border: none;">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">🤖 AI Local Pro</h3>
-                    <p style="opacity: 0.9;">vLLM clusters, Q4/Q8 quantization, multi-GPU prod.</p>
+                <div class="bento-item bento-2" style="background:linear-gradient(135deg,var(--accent),var(--accent-soft));color:white;border:none;">
+                    <h3 style="font-size:1.7rem;margin-bottom:0.75rem;">🤖 IA &amp; Automatisation</h3>
+                    <p style="opacity:0.92;font-size:0.95rem;line-height:1.7;">
+                        Stage OVEGNA : déploiement ComfyUI, Exo, Ollama sous Debian 12. 
+                        Cluster IA local, Docker, N8N, drivers CUDA, doc technique.
+                    </p>
                 </div>
-                <div class="bento-item bento-3" style="text-align: center;">
-                    <i class="fas fa-bolt" style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 0.75rem;"></i>
-                    <p style="font-size: 1.05rem; font-weight: 600;">0 Downtime<br>24/7 Uptime</p>
+                <div class="bento-item bento-3" style="text-align:center;">
+                    <i class="fas fa-bolt" style="font-size:2.5rem;color:var(--accent-gold);margin-bottom:0.5rem;"></i>
+                    <p style="font-size:1rem;font-weight:700;">0 Downtime<br>24/7 Uptime</p>
                 </div>
                 <div class="bento-item bento-4">
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">⚡ n8n Pipelines</h3>
-                    <p style="color: var(--text-light);">TikTok auto-upload, YouTube → édition → post. APIs sécurisées.</p>
+                    <h3 style="font-size:1.3rem;margin-bottom:0.5rem;">🌐 Admin Systèmes &amp; Réseaux</h3>
+                    <p style="color:var(--text-light);font-size:0.9rem;">
+                        Windows Server, Debian/Ubuntu, Active Directory, DNS, DHCP, 
+                        virtualisation (Hyper-V, VMware, VirtualBox), VLAN, VPN, firewall.
+                    </p>
                 </div>
                 <div class="bento-item bento-5">
-                    <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🔧</div>
-                    <p style="color: var(--text-light);">Debian Hardening • Tailscale VPN • Hardware VRAM Tuning</p>
+                    <h3 style="font-size:1.3rem;margin-bottom:0.5rem;">🔧 Support &amp; Exploitation</h3>
+                    <p style="color:var(--text-light);font-size:0.9rem;">
+                        Assistance utilisateurs, ticketing GLPI, Wireshark, déploiement postes, 
+                        inventaire matériel, PowerShell &amp; Bash.
+                    </p>
                 </div>
                 <div class="bento-item bento-6">
-                    <h3 style="margin-bottom: 0.5rem;">🎓 BTS SIO</h3>
-                    <p style="color: var(--text-light);">Lycée Fulbert • SLAM Track • 2026</p>
+                    <h3 style="margin-bottom:0.4rem;">🎓 BTS SIO</h3>
+                    <p style="color:var(--text-light);font-size:0.88rem;">Lycée Fulbert<br>Option SISR<br>2024 → 2026</p>
                 </div>
-                <div class="bento-item bento-7" style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📍</div>
-                    <p style="font-weight: 600;">Orléans, FR</p>
-                    <span style="background: rgba(16,185,129,0.15); color: #10b981; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-top: 0.5rem; display: inline-block;">Disponible</span>
+                <div class="bento-item bento-7" style="text-align:center;">
+                    <div style="font-size:1.75rem;margin-bottom:0.4rem;">🌍</div>
+                    <p style="font-weight:700;font-size:0.95rem;">FR · EN · ES</p>
+                    <span style="background:rgba(16,185,129,0.15);color:#10b981;padding:0.25rem 0.75rem;border-radius:20px;font-size:0.8rem;font-weight:600;margin-top:0.5rem;display:inline-block;">Disponible</span>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ═══════════════ COMPÉTENCES ═══════════════ -->
     <section id="competences" class="reveal">
         <div class="container">
             <div class="section-header">
                 <h2>Stack Technique</h2>
+                <p>Systèmes, réseaux, IA locale, automatisation — complet et opérationnel</p>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-                <div class="glass-surface" style="text-align: center;">
-                    <div style="font-size: 3.5rem; margin-bottom: 1rem;">🎮</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">Game Dev</h3>
-                    <div class="case-tech" style="justify-content: center;">
-                        <span class="tech-tag">FiveM/ESX</span><span class="tech-tag">Lua</span><span class="tech-tag">RageUI</span><span class="tech-tag">NUI</span>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-card-icon">🖥️</div>
+                    <h3>Systèmes</h3>
+                    <div class="tags">
+                        <span class="tag">Windows Server</span><span class="tag">Windows 10/11</span>
+                        <span class="tag">Debian 12</span><span class="tag">Ubuntu</span>
+                        <span class="tag">PowerShell</span><span class="tag">Bash</span>
                     </div>
                 </div>
-                <div class="glass-surface" style="text-align: center;">
-                    <div style="font-size: 3.5rem; margin-bottom: 1rem;">🤖</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">AI/ML</h3>
-                    <div class="case-tech" style="justify-content: center;">
-                        <span class="tech-tag">vLLM</span><span class="tech-tag">llama.cpp</span><span class="tech-tag">Qwen</span><span class="tech-tag">Multi-GPU</span>
+                <div class="skill-card">
+                    <div class="skill-card-icon">🌐</div>
+                    <h3>Réseaux</h3>
+                    <div class="tags">
+                        <span class="tag">TCP/IP</span><span class="tag">DNS/DHCP</span>
+                        <span class="tag">VLAN</span><span class="tag">VPN</span>
+                        <span class="tag">Firewall</span><span class="tag">Wireshark</span>
+                        <span class="tag">NAT/Routage</span>
                     </div>
                 </div>
-                <div class="glass-surface" style="text-align: center;">
-                    <div style="font-size: 3.5rem; margin-bottom: 1rem;">⚙️</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">DevOps</h3>
-                    <div class="case-tech" style="justify-content: center;">
-                        <span class="tech-tag">n8n</span><span class="tech-tag">Debian</span><span class="tech-tag">Docker</span><span class="tech-tag">Tailscale</span>
+                <div class="skill-card">
+                    <div class="skill-card-icon">📦</div>
+                    <h3>Virtualisation</h3>
+                    <div class="tags">
+                        <span class="tag">Hyper-V</span><span class="tag">VMware</span>
+                        <span class="tag">VirtualBox</span><span class="tag">Docker</span>
+                        <span class="tag">Docker Compose</span>
                     </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-card-icon">🤖</div>
+                    <h3>IA Locale</h3>
+                    <div class="tags">
+                        <span class="tag green">ComfyUI</span><span class="tag green">Ollama</span>
+                        <span class="tag green">Exo</span><span class="tag green">Llama</span>
+                        <span class="tag green">Qwen</span><span class="tag green">CUDA</span>
+                        <span class="tag green">vLLM</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-card-icon">⚡</div>
+                    <h3>Automatisation</h3>
+                    <div class="tags">
+                        <span class="tag gold">N8N</span><span class="tag gold">Python venv</span>
+                        <span class="tag gold">yt-dlp</span><span class="tag gold">scripts Bash</span>
+                        <span class="tag gold">OAuth2</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-card-icon">🛠️</div>
+                    <h3>Outils &amp; Support</h3>
+                    <div class="tags">
+                        <span class="tag">GLPI</span><span class="tag">Office 365</span>
+                        <span class="tag">Active Directory</span><span class="tag">Git</span>
+                        <span class="tag">Tailscale</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Langues -->
+            <div class="glass-surface" style="max-width:600px;margin:3rem auto 0;">
+                <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:1.75rem;text-align:center;">Langues</h3>
+                <div class="lang-bar">
+                    <div class="lang-name"><span>Français</span><span style="color:var(--accent);font-weight:600;">Natif</span></div>
+                    <div class="lang-track"><div class="lang-fill" data-width="100%" style="width:0%"></div></div>
+                </div>
+                <div class="lang-bar" style="margin-top:1rem;">
+                    <div class="lang-name"><span>Anglais</span><span style="color:var(--accent);font-weight:600;">Professionnel</span></div>
+                    <div class="lang-track"><div class="lang-fill" data-width="75%" style="width:0%"></div></div>
+                </div>
+                <div class="lang-bar" style="margin-top:1rem;">
+                    <div class="lang-name"><span>Espagnol</span><span style="color:var(--accent);font-weight:600;">Scolaire</span></div>
+                    <div class="lang-track"><div class="lang-fill" data-width="50%" style="width:0%"></div></div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ═══════════════ PROJETS / CASE STUDIES ═══════════════ -->
     <section id="projets" class="reveal">
         <div class="container">
             <div class="section-header">
-                <h2>Case Studies</h2>
-                <p>Projets live avec résultats mesurables</p>
+                <h2>Projets &amp; Case Studies</h2>
+                <p>Réalisations concrètes avec résultats mesurables</p>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2.5rem;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:2.5rem;">
+                <!-- OVEGNA -->
                 <div class="case-study">
-                    <div class="case-image">🚗 Garage FiveM</div>
+                    <div class="case-image" style="background:linear-gradient(135deg,#1e40af,#7c3aed);">🧬 IA OVEGNA SAS</div>
                     <div class="case-content">
-                        <h3 class="case-title">Garage Management System</h3>
-                        <p>Interface complète spawn/sortie véhicules ESX. NUI responsive + Lua optimisé.</p>
+                        <h3 class="case-title">Plateforme IA interne — OVEGNA SAS</h3>
+                        <p class="case-date"><i class="fas fa-calendar"></i> Mai – Juin 2025 · Cergy, France · 8 semaines</p>
+                        <p>Déploiement d'une stack IA complète sous Debian 12 pour la création automatique de vidéos promotionnelles. Cluster IA local Exo, containerisation Docker, workflows N8N et rédaction de documentation technique.</p>
                         <div class="case-tech">
-                            <span class="tech-tag">Lua</span><span class="tech-tag">HTML/CSS/JS</span><span class="tech-tag">ESX</span><span class="tech-tag">RageUI</span>
+                            <span class="tech-tag">Debian 12</span><span class="tech-tag">ComfyUI</span>
+                            <span class="tech-tag">Exo</span><span class="tech-tag">Ollama</span>
+                            <span class="tech-tag">Docker</span><span class="tech-tag">N8N</span>
+                            <span class="tech-tag">CUDA</span><span class="tech-tag">Python</span>
                         </div>
                         <div class="case-results">
-                            <div class="result-item"><span>👥 Utilisateurs/jour</span><span class="result-number">2.4k</span></div>
-                            <div class="result-item"><span>⭐ Note moyenne</span><span class="result-number">4.9/5</span></div>
-                            <div class="result-item"><span>⏱️ Temps dev</span><span class="result-number">120h</span></div>
-                        </div>
-                        <div style="margin-top: 1.5rem; display: flex; gap: 1.5rem;">
-                            <a href="#" style="color: var(--accent); font-weight: 600;">Live Demo →</a>
-                            <a href="#" style="color: var(--text-light); font-weight: 500;">GitHub</a>
+                            <div class="result-item"><span>🎬 Réalisation</span><span class="result-number">Vidéos promo IA</span></div>
+                            <div class="result-item"><span>🖥️ Infrastructure</span><span class="result-number">Cluster IA local</span></div>
+                            <div class="result-item"><span>📄 Livrable</span><span class="result-number">Doc technique complète</span></div>
                         </div>
                     </div>
                 </div>
+                <!-- FiveM -->
                 <div class="case-study">
-                    <div class="case-image">📱 TikTok Auto</div>
+                    <div class="case-image">🚗 FiveM / GTA5 RP</div>
                     <div class="case-content">
-                        <h3 class="case-title">TikTok Automation Pipeline</h3>
-                        <p>n8n workflow : yt-dlp download → édition → upload API TikTok sécurisé OAuth2.</p>
+                        <h3 class="case-title">Garage Management System</h3>
+                        <p class="case-date"><i class="fas fa-calendar"></i> 2024 – Présent · Freelance</p>
+                        <p>Interface complète de gestion véhicules pour serveurs FiveM ESX. NUI responsive, Lua optimisé, tablettes gang custom, HUDs realtime.</p>
                         <div class="case-tech">
-                            <span class="tech-tag">n8n</span><span class="tech-tag">yt-dlp</span><span class="tech-tag">OAuth2</span><span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Lua</span><span class="tech-tag">HTML/CSS/JS</span>
+                            <span class="tech-tag">ESX</span><span class="tech-tag">RageUI</span>
+                            <span class="tech-tag">ox_inventory</span>
+                        </div>
+                        <div class="case-results">
+                            <div class="result-item"><span>🖥️ Serveurs déployés</span><span class="result-number">10+</span></div>
+                            <div class="result-item"><span>⭐ Retour clients</span><span class="result-number">★★★★★</span></div>
+                            <div class="result-item"><span>⏱️ Disponibilité</span><span class="result-number">24/7</span></div>
+                        </div>
+                        <div class="case-links">
+                            <a href="#">Voir démo →</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- N8N TikTok -->
+                <div class="case-study">
+                    <div class="case-image" style="background:linear-gradient(135deg,#d97706,#f59e0b);">📱 TikTok Pipeline</div>
+                    <div class="case-content">
+                        <h3 class="case-title">Automation TikTok N8N</h3>
+                        <p class="case-date"><i class="fas fa-calendar"></i> 2025 · Projet personnel</p>
+                        <p>Workflow N8N complet : téléchargement YouTube (yt-dlp) → édition → upload API TikTok sécurisé OAuth2. Entièrement automatisé, 0 intervention manuelle.</p>
+                        <div class="case-tech">
+                            <span class="tech-tag">N8N</span><span class="tech-tag">yt-dlp</span>
+                            <span class="tech-tag">OAuth2</span><span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Debian</span>
                         </div>
                         <div class="case-results">
                             <div class="result-item"><span>🎥 Vidéos/mois</span><span class="result-number">450+</span></div>
                             <div class="result-item"><span>⏱️ Temps économisé</span><span class="result-number">95%</span></div>
-                            <div class="result-item"><span>💰 Coût infra</span><span class="result-number">0€/mois</span></div>
+                            <div class="result-item"><span>💰 Coût infra</span><span class="result-number">0 €/mois</span></div>
                         </div>
-                        <div style="margin-top: 1.5rem; display: flex; gap: 1.5rem;">
-                            <a href="#" style="color: var(--accent); font-weight: 600;">Dashboard →</a>
-                            <a href="#" style="color: var(--text-light); font-weight: 500;">Code</a>
+                        <div class="case-links">
+                            <a href="#">Dashboard →</a>
+                            <a href="#">Code</a>
                         </div>
                     </div>
                 </div>
@@ -430,41 +610,147 @@
         </div>
     </section>
 
+    <!-- ═══════════════ EXPÉRIENCE ═══════════════ -->
+    <section id="experience" class="reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2>Parcours</h2>
+                <p>Formations et expériences professionnelles</p>
+            </div>
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <div class="tl-date">Mai – Juin 2025 · 8 semaines</div>
+                        <div class="tl-title">Assistant Administrateur Systèmes, Réseaux &amp; IA</div>
+                        <div class="tl-company"><i class="fas fa-building"></i> OVEGNA SAS — Cergy, France</div>
+                        <ul class="tl-list">
+                            <li>Déploiement d'environnements IA (ComfyUI, Exo, Ollama) sous Debian 12</li>
+                            <li>Installation et configuration GPU NVIDIA (drivers, CUDA)</li>
+                            <li>Mise en place d'un cluster IA Exo en réseau local</li>
+                            <li>Conteneurisation avec Docker &amp; Docker Compose + N8N</li>
+                            <li>Création de venvs Python et installation de modèles IA (Llama, Qwen, WAN 2.1)</li>
+                            <li>Rédaction d'une documentation technique complète</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <div class="tl-date">2024 — En cours</div>
+                        <div class="tl-title">BTS SIO — Option SISR</div>
+                        <div class="tl-company"><i class="fas fa-graduation-cap"></i> Lycée Fulbert — Chartres, France</div>
+                        <ul class="tl-list">
+                            <li>Administration réseaux LAN/WAN, VLAN, routage, filtrage, NAT</li>
+                            <li>Gestion Windows Server &amp; Linux, Active Directory, DNS, DHCP</li>
+                            <li>Virtualisation (Hyper-V, VMware) et solutions de sauvegarde</li>
+                            <li>Sécurisation des infrastructures : firewalls, VPN, anti-attaques</li>
+                            <li>Scripts d'automatisation pour optimisation des tâches administratives</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <div class="tl-date">2021 – 2024</div>
+                        <div class="tl-title">Baccalauréat Technologique — Option SI</div>
+                        <div class="tl-company"><i class="fas fa-graduation-cap"></i> Lycée Fulbert — France</div>
+                        <ul class="tl-list">
+                            <li>Voie Technologique, Système d'Information</li>
+                            <li>Premiers pas en informatique, réseaux et systèmes d'exploitation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <div class="tl-date">Février 2020</div>
+                        <div class="tl-title">Stage d'observation</div>
+                        <div class="tl-company"><i class="fas fa-building"></i> Diot-Siaci — Paris, France</div>
+                        <ul class="tl-list">
+                            <li>Découverte des systèmes d'exploitation et de la sécurité informatique</li>
+                            <li>Rencontre avec les domaines : Informatique, Juridique, Sécurité, RH</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Skills -->
+            <div style="margin-top:5rem;">
+                <h3 style="text-align:center;font-size:1.75rem;font-weight:700;margin-bottom:2.5rem;">Soft Skills</h3>
+                <div class="softskill-grid">
+                    <div class="softskill-item">
+                        <div class="ico">🤝</div>
+                        <p style="font-weight:600;">Esprit de communauté</p>
+                        <p style="color:var(--text-light);font-size:0.85rem;">Forums, Discord, GitHub</p>
+                    </div>
+                    <div class="softskill-item">
+                        <div class="ico">💡</div>
+                        <p style="font-weight:600;">Solutions créatives</p>
+                        <p style="color:var(--text-light);font-size:0.85rem;">Toujours un plan B</p>
+                    </div>
+                    <div class="softskill-item">
+                        <div class="ico">📡</div>
+                        <p style="font-weight:600;">Veille techno</p>
+                        <p style="color:var(--text-light);font-size:0.85rem;">Naturelle &amp; constante</p>
+                    </div>
+                    <div class="softskill-item">
+                        <div class="ico">🎯</div>
+                        <p style="font-weight:600;">Autonomie</p>
+                        <p style="color:var(--text-light);font-size:0.85rem;">Travail solo efficace</p>
+                    </div>
+                    <div class="softskill-item">
+                        <div class="ico">🧊</div>
+                        <p style="font-weight:600;">Gestion du stress</p>
+                        <p style="color:var(--text-light);font-size:0.85rem;">Incidents IT sans panique</p>
+                    </div>
+                    <div class="softskill-item">
+                        <div class="ico">🎬</div>
+                        <p style="font-weight:600;">Montage vidéo</p>
+                        <p style="color:var(--text-light);font-size:0.85rem;">Post-production maîtrisée</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ TÉMOIGNAGES ═══════════════ -->
     <section id="temoignages" class="reveal">
         <div class="container">
             <div class="section-header">
                 <h2>Ce qu'ils en disent</h2>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 2rem;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2rem;">
                 <div class="testimonial">
-                    <p>"Michou a refait notre garage FiveM en 1 semaine. Interface parfaite, 0 bug depuis 6 mois. Recommandé à 100%."</p>
+                    <p>"Rayan a mis en place toute notre infra IA en quelques jours. Documentation impeccable, zéro problème depuis la mise en prod."</p>
                     <div class="testimonial-author">
-                        <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; flex-shrink: 0;">AB</div>
+                        <div style="width:48px;height:48px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;flex-shrink:0;">OV</div>
+                        <div>
+                            <div>Manager Tech — OVEGNA SAS</div>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"Garage FiveM refait en 1 semaine top chrono. Interface parfaite, 0 bug depuis 6 mois. Je recommande à 100%."</p>
+                    <div class="testimonial-author">
+                        <div style="width:48px;height:48px;border-radius:50%;background:var(--accent-gold);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;flex-shrink:0;">AB</div>
                         <div>
                             <div>Admin Serveur RP</div>
                             <div class="stars">★★★★★</div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial">
-                    <p>"Pipeline n8n TikTok qui tourne H24. Énorme gain de temps, code propre et scalable. Exactement ce qu'il fallait."</p>
-                    <div class="testimonial-author">
-                        <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--accent-gold); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; flex-shrink: 0;">JC</div>
-                        <div>
-                            <div>Content Creator</div>
-                            <div class="stars">★★★★★</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
+    <!-- ═══════════════ CONTACT ═══════════════ -->
     <section id="contact" class="reveal">
         <div class="container">
             <div class="section-header">
                 <h2>Travaillons ensemble</h2>
-                <p>Un projet FiveM ? Besoin d'une AI locale ? Un café virtuel ?</p>
+                <p>Un projet réseau ? Une infra IA ? Un stage à pourvoir ? Écris-moi.</p>
             </div>
             <form class="contact-form" onsubmit="handleSubmit(event)">
                 <div class="form-group">
@@ -476,33 +762,49 @@
                     <input type="email" name="email" placeholder="jean@exemple.fr" required>
                 </div>
                 <div class="form-group">
+                    <label>Sujet</label>
+                    <input type="text" name="subject" placeholder="Projet réseau, stage, freelance...">
+                </div>
+                <div class="form-group">
                     <label>Message</label>
-                    <textarea rows="5" name="message" placeholder="Décris ton projet : FiveM, AI local, automation..." required></textarea>
+                    <textarea rows="5" name="message" placeholder="Décris ton besoin : infra, IA locale, automation, FiveM..." required></textarea>
                 </div>
                 <button type="submit" class="submit-btn">
-                    Envoyer le message <i class="fas fa-paper-plane" style="margin-left: 0.5rem;"></i>
+                    Envoyer le message <i class="fas fa-paper-plane" style="margin-left:0.5rem;"></i>
                 </button>
                 <div id="form-message"></div>
             </form>
-            <div style="text-align: center; margin-top: 3rem; color: var(--text-light);">
-                <p style="margin-bottom: 1.5rem;"><i class="fas fa-envelope"></i> contact@michou-twitch.fr</p>
-                <div style="display: flex; justify-content: center; gap: 2rem; font-size: 1.75rem;">
-                    <a href="#" style="color: var(--accent); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" style="color: #9146ff; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><i class="fab fa-twitch"></i></a>
-                    <a href="#" style="color: #333; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><i class="fab fa-github"></i></a>
+
+            <div style="text-align:center;margin-top:3.5rem;">
+                <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem;">
+                    <a href="mailto:rouis.rayan2005@gmail.com" style="color:var(--text-light);text-decoration:none;display:flex;align-items:center;gap:0.5rem;">
+                        <i class="fas fa-envelope" style="color:var(--accent);"></i> rouis.rayan2005@gmail.com
+                    </a>
+                    <a href="tel:+33621724113" style="color:var(--text-light);text-decoration:none;display:flex;align-items:center;gap:0.5rem;">
+                        <i class="fas fa-phone" style="color:var(--accent);"></i> +33 6 21 72 41 13
+                    </a>
                 </div>
+                <div style="display:flex;justify-content:center;gap:2rem;font-size:1.75rem;margin-bottom:2rem;">
+                    <a href="https://www.linkedin.com/in/rayan-rouis/" target="_blank" style="color:#0a66c2;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" style="color:#9146ff;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><i class="fab fa-twitch"></i></a>
+                    <a href="#" style="color:#333;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><i class="fab fa-github"></i></a>
+                </div>
+                <a href="CV_Rayan_Rouis-1.pdf" class="cta-secondary" download style="display:inline-flex;">
+                    <i class="fas fa-file-pdf"></i> Télécharger mon CV complet (PDF)
+                </a>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 MICHOU TWITCH. Tous droits réservés. | Fait avec ❤️ en HTML/CSS/JS pur. | <a href="#" style="color: var(--text-light);">Mentions légales</a></p>
+            <p style="margin-bottom:0.5rem;">Rayan ROUIS &copy; 2026 · Tous droits réservés</p>
+            <p style="font-size:0.85rem;">Fait avec ❤️ en HTML/CSS/JS pur · <a href="#" style="color:var(--text-light);">Mentions légales</a></p>
         </div>
     </footer>
 
     <script>
-        // Dark Mode avec localStorage
+        // Dark Mode
         function toggleDark() {
             document.body.classList.toggle('dark');
             localStorage.setItem('darkMode', document.body.classList.contains('dark'));
@@ -515,21 +817,18 @@
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const t = document.querySelector(link.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Scroll Progress Bar
+        // Scroll Progress + Nav Active
         window.addEventListener('scroll', () => {
             const scrolled = document.documentElement.scrollTop;
             const maxScroll = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById('progress').style.transform = `scaleX(${scrolled / maxScroll})`;
-
-            // Active nav
             document.querySelectorAll('section[id]').forEach(section => {
-                const top = section.offsetTop - 200;
-                if (scrolled >= top) {
+                if (scrolled >= section.offsetTop - 200) {
                     document.querySelectorAll('.nav-item').forEach(l => l.classList.remove('active'));
                     const link = document.querySelector(`.nav-item[href="#${section.id}"]`);
                     if (link) link.classList.add('active');
@@ -537,7 +836,7 @@
             });
         });
 
-        // Stats Counter animé
+        // Stats Counter
         let statsTriggered = false;
         const statsObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
@@ -545,8 +844,7 @@
                     statsTriggered = true;
                     document.querySelectorAll('.stat-number').forEach(stat => {
                         const target = parseInt(stat.dataset.target);
-                        let count = 0;
-                        const step = target / 80;
+                        let count = 0; const step = Math.max(target / 80, 0.1);
                         const timer = setInterval(() => {
                             count += step;
                             stat.textContent = Math.floor(count);
@@ -559,10 +857,16 @@
         const heroStats = document.querySelector('.hero-stats');
         if (heroStats) statsObserver.observe(heroStats);
 
-        // Reveal on Scroll
+        // Reveal + Lang bars
         const revealObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Animate language bars
+                    entry.target.querySelectorAll('.lang-fill[data-width]').forEach(bar => {
+                        bar.style.width = bar.dataset.width;
+                    });
+                }
             });
         }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
