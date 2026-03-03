@@ -493,6 +493,69 @@
         footer { padding: 3rem 0 2rem; border-top: 1px solid var(--border); text-align: center; }
         .footer-text { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-dim); }
 
+
+        /* STATS */
+        .hero-stats { display: flex; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .stat {
+            text-align: center; padding: 1rem 1.5rem;
+            border: 1px solid var(--border); border-radius: 12px;
+            background: rgba(0,212,255,0.04); min-width: 90px;
+            transition: all 0.3s ease;
+        }
+        .stat:hover { border-color: rgba(0,212,255,0.35); box-shadow: var(--glow-cyan); transform: translateY(-4px); }
+        .stat-number {
+            font-size: 2.25rem; font-weight: 800; color: var(--cyan);
+            line-height: 1; font-family: 'JetBrains Mono', monospace;
+        }
+        .stat-label {
+            color: var(--text-dim); font-size: 0.78rem;
+            text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem;
+        }
+
+
+        /* HERO ROLE */
+        .hero-role {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem; color: var(--cyan); margin-bottom: 2rem;
+        }
+        .hero-role span { color: var(--text-dim); }
+
+        /* BUTTONS */
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            background: transparent; color: var(--cyan);
+            border: 1px solid var(--cyan); padding: 0.9rem 2rem;
+            border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+            text-decoration: none; cursor: none; font-family: 'JetBrains Mono', monospace;
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .btn-primary::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,212,255,0.1), transparent);
+            transition: left 0.4s ease;
+        }
+        .btn-primary:hover { background: rgba(0,212,255,0.08); box-shadow: var(--glow-cyan); transform: translateY(-2px); }
+        .btn-primary:hover::before { left: 100%; }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            background: rgba(124,58,237,0.1); color: var(--violet);
+            border: 1px solid rgba(124,58,237,0.4); padding: 0.9rem 2rem;
+            border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+            text-decoration: none; cursor: none; font-family: 'JetBrains Mono', monospace;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover { background: rgba(124,58,237,0.15); box-shadow: var(--glow-violet); transform: translateY(-2px); }
+
+        /* AI AVATAR */
+        .ai-avatar {
+            width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 1rem;
+            background: linear-gradient(135deg, var(--cyan), var(--violet));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; border: 3px solid rgba(0,212,255,0.3);
+            box-shadow: var(--glow-cyan);
+        }
+
         /* REVEAL */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -605,8 +668,8 @@
                             </div>
                         </div>
                         <div class="ai-card-body">
-                            <div class="ai-row"><span class="ai-row-key">Mail</span><span class="ai-row-val" style="font-size:0.78rem;">rouis.rayan2005@gmail.com</span></div>
-                            <div class="ai-row"><span class="ai-row-key">Téléphone</span><span class="ai-row-val">+33 6 21 72 41 13</span></div>
+                            <div class="ai-row"><span class="ai-row-key">mail</span><span class="ai-row-val" style="font-size:0.78rem;">rouis.rayan2005@gmail.com</span></div>
+                            <div class="ai-row"><span class="ai-row-key">phone</span><span class="ai-row-val">+33 6 21 72 41 13</span></div>
                             <div class="ai-row"><span class="ai-row-key">location</span><span class="ai-row-val">Paris, FR</span></div>
                             <div class="ai-row"><span class="ai-row-key">formation</span><span class="ai-row-val violet">BTS SIO option SISR</span></div>
                             <div class="ai-row"><span class="ai-row-key">last_stage</span><span class="ai-row-val">OVEGNA SAS</span></div>
@@ -625,9 +688,9 @@
                 <div class="lf-badge">Disponible dès maintenant</div>
                 <h2 class="lf-title">Ce que je cherche</h2>
                 <p class="lf-details">
-                    Je recherche une <strong style="color:var(--text);">alternance ou un stage en administration systèmes & réseaux</strong><br>
-                    à partir de <strong style="color:var(--cyan);">septembre 2026</strong> — secteur <strong style="color:var(--text);">Orléans · Paris · Remote</strong><br>
-                    Durée : <strong style="color:var(--text);">1 à 2 ans</strong> en rythme alternance BTS SIO SISR
+                    Je recherche une <strong style="color:var(--text);">alternance pour me spécialiser dans la CyberSécurité et l'Intelligence Artificielle</strong><br>
+                    à partir de <strong style="color:var(--cyan);">Septembre 2026</strong> — secteur <strong style="color:var(--text);">Rambouillet · Orléans · Paris · Remote</strong><br>
+                    Durée : <strong style="color:var(--text);">3 ans</strong> en rythme alternance
                 </p>
                 <div class="lf-tags">
                     <span class="tag g">Admin Réseaux</span>
@@ -635,7 +698,7 @@
                     <span class="tag v">Virtualisation</span>
                     <span class="tag y">Automatisation IA</span>
                     <span class="tag">Sécurité infra</span>
-                    <span class="tag g">Orléans / Paris</span>
+                    <span class="tag g">Rambouillet / Orléans / Paris</span>
                     <span class="tag">Remote OK</span>
                 </div>
             </div>
@@ -646,7 +709,7 @@
                     <div class="glass-card">
                         <div style="color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:0.75rem;margin-bottom:1rem;">// en bref</div>
                         <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.75rem;">Qui suis-je ?</h3>
-                        <p style="color:var(--text-dim);font-size:0.92rem;line-height:1.8;">Étudiant BTS SIO SISR passionné, autonome et capable de déployer des solutions techniques complexes dès le premier jour. 2 stages réussis, documentation rigoureuse, 0 supervision nécessaire.</p>
+                        <p style="color:var(--text-dim);font-size:0.92rem;line-height:1.8;">Étudiant BTS SIO SISR passionné, autonome et capable dès le premier jour. 2 stages réussis, documentation rigoureuse.</p>
                     </div>
                     <div class="glass-card">
                         <div style="color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:0.75rem;margin-bottom:1rem;">// ce que j'apporte</div>
@@ -664,7 +727,6 @@
                         <ul style="color:var(--text-dim);font-size:0.9rem;padding-left:1.2rem;line-height:2;">
                             <li>Infra IA déployée en production chez OVEGNA</li>
                             <li>Pipeline TikTok 0% manuel, 450+ vidéos/mois</li>
-                            <li>10+ serveurs FiveM en 24/7 sans downtime</li>
                             <li>Doc technique node par node livrée</li>
                         </ul>
                     </div>
@@ -1057,7 +1119,7 @@
                     <a href="tel:+33621724113" class="info-item">
                         <div class="info-icon"><i class="fas fa-phone"></i></div>
                         <div>
-                            <div class="info-label">// Téléphone</div>
+                            <div class="info-label">// phone</div>
                             <div class="info-val">+33 6 21 72 41 13</div>
                         </div>
                     </a>
@@ -1215,11 +1277,14 @@
         if (recruiterMode) {
             document.body.classList.add('recruiter-mode');
             btn.classList.add('mode-recruiter');
-            // Scroll smooth to #looking
             document.getElementById('looking').scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
             document.body.classList.remove('recruiter-mode');
             btn.classList.remove('mode-recruiter');
+            // Re-activer tous les reveals cachés par le mode recruteur
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+            }, 50);
         }
     }
 
