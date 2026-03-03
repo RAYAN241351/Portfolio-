@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rayan ROUIS — Admin Sys & IA · Portfolio 2026</title>
-    <meta name="description" content="Étudiant BTS SIO SISR. Admin systèmes, réseaux, IA locale. Stage OVEGNA SAS. Orléans.">
+    <meta name="description" content="Étudiant BTS SIO SISR. Admin systèmes, réseaux, IA locale. Stage OVEGNA SAS. Paris.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -42,6 +42,142 @@
         .skill-card:nth-child(6) .skill-icon i { color: var(--cyan); }
         .skill-icon { font-size: 1.4rem; }
         .soft-item .ico { font-size: 1.6rem; }
+
+
+        /* INTERACTIVE TERMINAL */
+        #terminal-body {
+            background: rgba(3,7,18,0.95);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 2.5rem;
+            min-height: 320px;
+            max-height: 420px;
+            overflow-y: auto;
+            cursor: text;
+        }
+        #terminal-output { margin-bottom: 0.5rem; }
+        .t-out-line { font-size: 0.85rem; margin-bottom: 0.2rem; line-height: 1.6; }
+        .t-out-line.prompt-echo { color: var(--text-dim); }
+        .t-out-line.error { color: var(--red); }
+        .t-out-line.success { color: var(--green); }
+        .t-out-line.info { color: var(--cyan); }
+        .t-out-line.bold { color: var(--text); font-weight: 600; }
+        .t-out-line.dim { color: var(--text-dim); }
+        .t-out-line.yellow { color: #fbbf24; }
+        .t-out-line.violet { color: #a78bfa; }
+        .t-out-line.spacer { margin-bottom: 0.6rem; }
+        .t-input-line {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+        #t-input {
+            background: transparent; border: none; outline: none;
+            color: var(--text); font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem; flex: 1; caret-color: var(--cyan);
+        }
+        #t-input::placeholder { color: rgba(100,116,139,0.4); }
+        .t-tag-inline {
+            display: inline-block;
+            background: rgba(0,212,255,0.08);
+            color: var(--cyan);
+            border: 1px solid rgba(0,212,255,0.2);
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            margin: 0.1rem 0.2rem;
+        }
+        .t-tag-inline.g { background:rgba(0,255,136,0.08); color:var(--green); border-color:rgba(0,255,136,0.2); }
+        .t-tag-inline.y { background:rgba(245,158,11,0.08); color:#fbbf24; border-color:rgba(245,158,11,0.2); }
+        .t-tag-inline.v { background:rgba(124,58,237,0.08); color:#a78bfa; border-color:rgba(124,58,237,0.2); }
+
+
+        /* CUSTOM CURSOR */
+        *, *::before, *::after { cursor: none !important; }
+        #cursor-dot {
+            width: 8px; height: 8px; background: var(--cyan);
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 99999; transform: translate(-50%,-50%);
+            transition: transform 0.1s ease, background 0.2s;
+            box-shadow: 0 0 10px var(--cyan), 0 0 20px rgba(0,212,255,0.4);
+        }
+        #cursor-ring {
+            width: 32px; height: 32px; border: 1px solid rgba(0,212,255,0.5);
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 99998; transform: translate(-50%,-50%);
+            transition: width 0.3s, height 0.3s, border-color 0.3s, left 0.08s ease, top 0.08s ease;
+        }
+        #cursor-cross-h, #cursor-cross-v {
+            position: fixed; pointer-events: none; z-index: 99997;
+            background: rgba(0,212,255,0.25);
+            transform: translate(-50%,-50%);
+        }
+        #cursor-cross-h { width: 20px; height: 1px; }
+        #cursor-cross-v { width: 1px; height: 20px; }
+        body:hover #cursor-ring { opacity: 1; }
+        a:hover ~ #cursor-ring, button:hover ~ #cursor-ring { width: 48px; height: 48px; border-color: var(--violet); }
+
+        /* MODE TOGGLE */
+        .mode-toggle {
+            display: flex; align-items: center; gap: 0.6rem;
+            background: rgba(3,7,18,0.9); border: 1px solid var(--border);
+            border-radius: 50px; padding: 0.35rem 1rem;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .mode-toggle:hover { border-color: var(--cyan); box-shadow: var(--glow-cyan); }
+        .mode-indicator {
+            width: 28px; height: 14px; background: rgba(0,212,255,0.15);
+            border-radius: 7px; border: 1px solid var(--border);
+            position: relative; transition: background 0.3s;
+        }
+        .mode-indicator::after {
+            content: ''; position: absolute; top: 2px; left: 2px;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--cyan); transition: left 0.3s, background 0.3s;
+        }
+        .mode-recruiter .mode-indicator { background: rgba(124,58,237,0.2); border-color: var(--violet); }
+        .mode-recruiter .mode-indicator::after { left: 16px; background: var(--violet); }
+        .mode-label-tech { color: var(--cyan); }
+        .mode-label-rec  { color: var(--text-dim); transition: color 0.3s; }
+        .mode-recruiter .mode-label-tech { color: var(--text-dim); }
+        .mode-recruiter .mode-label-rec  { color: var(--violet); }
+
+        /* SECTIONS CACHÉES EN MODE RECRUTEUR */
+        body.recruiter-mode #terminal-body,
+        body.recruiter-mode .terminal-header,
+        body.recruiter-mode .glitch::before,
+        body.recruiter-mode .glitch::after,
+        body.recruiter-mode .section-label { display: none !important; }
+
+        body.recruiter-mode #skills { display: none !important; }
+
+        /* SECTION RECRUTEUR visible seulement en mode rec */
+        #recruiter-view { display: none; }
+        body.recruiter-mode #recruiter-view { display: block; }
+        body.recruiter-mode .tech-only { display: none !important; }
+
+        /* "CE QUE JE CHERCHE" */
+        #looking-for {
+            background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(0,212,255,0.05));
+            border: 1px solid rgba(124,58,237,0.25);
+            border-radius: 20px; padding: 2.5rem;
+            max-width: 900px; margin: 0 auto 4rem;
+            text-align: center;
+        }
+        .lf-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(0,255,136,0.1); color: var(--green);
+            border: 1px solid rgba(0,255,136,0.25); border-radius: 50px;
+            padding: 0.4rem 1.2rem; font-size: 0.82rem; font-weight: 600;
+            font-family: 'JetBrains Mono', monospace; margin-bottom: 1.5rem;
+        }
+        .lf-badge::before { content: ''; width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+        .lf-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .lf-details { color: var(--text-dim); font-size: 0.95rem; line-height: 1.8; }
+        .lf-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 1.5rem; }
 
         /* SCANLINES */
         body::before {
@@ -422,6 +558,10 @@
     </style>
 </head>
 <body>
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+    <div id="cursor-cross-h"></div>
+    <div id="cursor-cross-v"></div>
     <div id="progress"></div>
 
     <nav>
@@ -433,6 +573,11 @@
             <li><a href="#experience" class="nav-link">experience</a></li>
             <li><a href="#contact" class="nav-link">contact</a></li>
         </ul>
+        <button class="mode-toggle" id="modeToggle" onclick="toggleMode()" title="Changer de vue">
+            <span class="mode-label-tech">Tech</span>
+            <div class="mode-indicator"></div>
+            <span class="mode-label-rec">Recruteur</span>
+        </button>
     </nav>
 
     <!-- HERO -->
@@ -446,19 +591,15 @@
                         <div class="terminal-dot" style="background:#ff5f56;"></div>
                         <div class="terminal-dot" style="background:#ffbd2e;"></div>
                         <div class="terminal-dot" style="background:#27c93f;"></div>
-                        <span style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text-dim);margin-left:0.5rem;">~ profile.json</span>
+                        <span style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text-dim);margin-left:0.5rem;">rayan@portfolio:~</span>
+                        <span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-dim);">type <span style="color:var(--cyan)">help</span> to start</span>
                     </div>
-                    <div class="terminal-body">
-                        <div class="t-line"><span class="t-prompt">rayan@portfolio</span><span class="t-comment"> ~ $</span> <span class="t-cmd">cat profile.json</span></div>
-                        <div class="t-line" style="margin-top:0.75rem;"><span style="color:var(--text-dim);">{</span></div>
-                        <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"name"</span><span style="color:var(--text-dim);">: </span><span class="t-str">"Rayan ROUIS"</span><span style="color:var(--text-dim);">,</span></div>
-                        <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"role"</span><span style="color:var(--text-dim);">: </span><span class="t-str">"Admin Sys & Réseaux · IA Locale"</span><span style="color:var(--text-dim);">,</span></div>
-                        <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"school"</span><span style="color:var(--text-dim);">: </span><span class="t-str">"BTS SIO SISR · Lycée Fulbert"</span><span style="color:var(--text-dim);">,</span></div>
-                        <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"location"</span><span style="color:var(--text-dim);">: </span><span class="t-str">"Orléans, France"</span><span style="color:var(--text-dim);">,</span></div>
-                        <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"status"</span><span style="color:var(--text-dim);">: </span><span class="t-val">AVAILABLE</span><span style="color:var(--text-dim);">,</span></div>
-                        <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"stack"</span><span style="color:var(--text-dim);">: [</span><span class="t-str">"Debian"</span><span style="color:var(--text-dim);">, </span><span class="t-str">"N8N"</span><span style="color:var(--text-dim);">, </span><span class="t-str">"TikTok API"</span><span style="color:var(--text-dim);">, </span><span class="t-str">"Ollama"</span><span style="color:var(--text-dim);">, </span><span class="t-str">"Docker"</span><span style="color:var(--text-dim);">]</span></div>
-                        <div class="t-line"><span style="color:var(--text-dim);">}</span></div>
-                        <div class="t-line" style="margin-top:0.5rem;"><span class="t-prompt">rayan@portfolio</span><span class="t-comment"> ~ $</span> <span class="cursor-blink"></span></div>
+                    <div class="terminal-body" id="terminal-body">
+                        <div id="terminal-output"></div>
+                        <div class="t-input-line" id="t-input-line">
+                            <span class="t-prompt">rayan@portfolio</span><span class="t-comment"> ~ $</span>
+                            <input type="text" id="t-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="type a command...">
+                        </div>
                     </div>
 
                     <h1 class="hero-name">
@@ -519,6 +660,62 @@
             </div>
         </div>
     </section>
+    <!-- CE QUE JE CHERCHE + VUE RECRUTEUR -->
+    <section id="looking" class="reveal" style="padding-top:2rem;padding-bottom:3rem;">
+        <div class="container">
+            <div id="looking-for">
+                <div class="lf-badge">Disponible dès maintenant</div>
+                <h2 class="lf-title">Ce que je cherche</h2>
+                <p class="lf-details">
+                    Je recherche une <strong style="color:var(--text);">alternance ou un stage en administration systèmes & réseaux</strong><br>
+                    à partir de <strong style="color:var(--cyan);">septembre 2026</strong> — secteur <strong style="color:var(--text);">Paris · Remote</strong><br>
+                    Durée : <strong style="color:var(--text);">1 à 2 ans</strong> en rythme alternance BTS SIO SISR
+                </p>
+                <div class="lf-tags">
+                    <span class="tag g">Admin Réseaux</span>
+                    <span class="tag">Support IT</span>
+                    <span class="tag v">Virtualisation</span>
+                    <span class="tag y">Automatisation IA</span>
+                    <span class="tag">Sécurité infra</span>
+                    <span class="tag g">Paris</span>
+                    <span class="tag">Remote OK</span>
+                </div>
+            </div>
+
+            <!-- VUE RECRUTEUR : résumé simplifié sans jargon tech -->
+            <div id="recruiter-view">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:1rem;">
+                    <div class="glass-card">
+                        <div style="color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:0.75rem;margin-bottom:1rem;">// en bref</div>
+                        <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.75rem;">Qui suis-je ?</h3>
+                        <p style="color:var(--text-dim);font-size:0.92rem;line-height:1.8;">Étudiant BTS SIO SISR passionné, autonome et capable de déployer des solutions techniques complexes dès le premier jour. 2 stages réussis, documentation rigoureuse, 0 supervision nécessaire.</p>
+                    </div>
+                    <div class="glass-card">
+                        <div style="color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:0.75rem;margin-bottom:1rem;">// ce que j'apporte</div>
+                        <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.75rem;">Valeur ajoutée</h3>
+                        <ul style="color:var(--text-dim);font-size:0.9rem;padding-left:1.2rem;line-height:2;">
+                            <li>Administration Linux/Windows en conditions réelles</li>
+                            <li>Automatisation des tâches répétitives (N8N)</li>
+                            <li>Documentation technique claire et complète</li>
+                            <li>Autonomie totale sur les projets confiés</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card">
+                        <div style="color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:0.75rem;margin-bottom:1rem;">// résultats concrets</div>
+                        <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.75rem;">Preuves</h3>
+                        <ul style="color:var(--text-dim);font-size:0.9rem;padding-left:1.2rem;line-height:2;">
+                            <li>Infra IA déployée en production chez OVEGNA</li>
+                            <li>Pipeline TikTok 0% manuel, 450+ vidéos/mois</li>
+                            <li>10+ serveurs FiveM en 24/7 sans downtime</li>
+                            <li>Doc technique node par node livrée</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <!-- SKILLS -->
     <section id="skills" class="reveal">
@@ -1012,6 +1209,357 @@
             btn.innerHTML = '$ ./envoyer-message.sh <i class="fas fa-paper-plane" style="margin-left:0.5rem"></i>';
             btn.classList.remove('sending');
         }
+
+
+    // ═══════════════════════════════════════════
+    // CUSTOM CURSOR
+    // ═══════════════════════════════════════════
+    const cursorDot  = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+    const cursorCH   = document.getElementById('cursor-cross-h');
+    const cursorCV   = document.getElementById('cursor-cross-v');
+
+    document.addEventListener('mousemove', (e) => {
+        cursorDot.style.left  = e.clientX + 'px';
+        cursorDot.style.top   = e.clientY + 'px';
+        cursorRing.style.left = e.clientX + 'px';
+        cursorRing.style.top  = e.clientY + 'px';
+        cursorCH.style.left   = e.clientX + 'px';
+        cursorCH.style.top    = e.clientY + 'px';
+        cursorCV.style.left   = e.clientX + 'px';
+        cursorCV.style.top    = e.clientY + 'px';
+    });
+
+    document.querySelectorAll('a, button, input, textarea, .case-card, .glass-card, .skill-card').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorRing.style.width  = '50px';
+            cursorRing.style.height = '50px';
+            cursorRing.style.borderColor = 'var(--violet)';
+            cursorDot.style.background = 'var(--violet)';
+            cursorDot.style.boxShadow = '0 0 10px var(--violet), 0 0 20px rgba(124,58,237,0.4)';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursorRing.style.width  = '32px';
+            cursorRing.style.height = '32px';
+            cursorRing.style.borderColor = 'rgba(0,212,255,0.5)';
+            cursorDot.style.background = 'var(--cyan)';
+            cursorDot.style.boxShadow = '0 0 10px var(--cyan), 0 0 20px rgba(0,212,255,0.4)';
+        });
+    });
+
+    // ═══════════════════════════════════════════
+    // MODE TOGGLE RECRUITER / TECH
+    // ═══════════════════════════════════════════
+    let recruiterMode = false;
+    function toggleMode() {
+        recruiterMode = !recruiterMode;
+        const btn = document.getElementById('modeToggle');
+        if (recruiterMode) {
+            document.body.classList.add('recruiter-mode');
+            btn.classList.add('mode-recruiter');
+            // Scroll smooth to #looking
+            document.getElementById('looking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            document.body.classList.remove('recruiter-mode');
+            btn.classList.remove('mode-recruiter');
+        }
+    }
+
+    // ═══════════════════════════════════════════
+    // INTERACTIVE TERMINAL
+    // ═══════════════════════════════════════════
+    const termOutput = document.getElementById('terminal-output');
+    const termInput  = document.getElementById('t-input');
+    const termBody   = document.getElementById('terminal-body');
+    const cmdHistory = [];
+    let histIdx = -1;
+
+    const COMMANDS = {
+        help: () => [
+            { t: 'info',    v: '╔══════════════════════════════════════╗' },
+            { t: 'info',    v: '║        rayan@portfolio — help         ║' },
+            { t: 'info',    v: '╚══════════════════════════════════════╝' },
+            { t: 'spacer',  v: '' },
+            { t: 'bold',    v: '  whoami       →  profil & contact' },
+            { t: 'bold',    v: '  skills       →  stack technique complète' },
+            { t: 'bold',    v: '  projects     →  case studies' },
+            { t: 'bold',    v: '  experience   →  parcours & stages' },
+            { t: 'bold',    v: '  contact      →  comment me joindre' },
+            { t: 'bold',    v: '  cv           →  télécharger mon CV' },
+            { t: 'bold',    v: '  clear        →  vider le terminal' },
+            { t: 'spacer',  v: '' },
+            { t: 'dim',     v: '  ↑/↓  historique   Tab  autocomplétion' },
+        ],
+        whoami: () => [
+            { t: 'spacer',  v: '' },
+            { t: 'info',    v: '  ┌─ PROFIL ──────────────────────────────' },
+            { t: 'bold',    v: '  │ Rayan ROUIS  ·  aka KABBARBOY' },
+            { t: 'dim',     v: '  │ BTS SIO option SISR · Lycée Fulbert' },
+            { t: 'dim',     v: '  │ Paris, France' },
+            { t: 'success', v: '  │ status: DISPONIBLE' },
+            { t: 'info',    v: '  ├─ CONTACT ─────────────────────────────' },
+            { t: 'dim',     v: '  │ mail   : rouis.rayan2005@gmail.com' },
+            { t: 'dim',     v: '  │ phone  : +33 6 21 72 41 13' },
+            { t: 'dim',     v: '  │ linkedin: /in/rayan-rouis' },
+            { t: 'info',    v: '  └────────────────────────────────────────' },
+            { t: 'spacer',  v: '' },
+            { t: 'dim',     v: '  "Réseau dans le sang, geek assumé. Je démonte,' },
+            { t: 'dim',     v: '   teste, corrige et reteste tout."' },
+            { t: 'spacer',  v: '' },
+        ],
+        skills: () => [
+            { t: 'spacer',  v: '' },
+            { t: 'info',    v: '  ┌─ SYSTÈMES ─────────────────────────────' },
+            { t: 'dim',     v: '  │ Windows Server · Debian 12 · Ubuntu' },
+            { t: 'dim',     v: '  │ PowerShell · Bash · Active Directory' },
+            { t: 'info',    v: '  ├─ RÉSEAUX ──────────────────────────────' },
+            { t: 'dim',     v: '  │ TCP/IP · DNS/DHCP · VLAN · VPN · NAT' },
+            { t: 'dim',     v: '  │ Firewall · Wireshark · Routage' },
+            { t: 'info',    v: '  ├─ VIRTUALISATION ───────────────────────' },
+            { t: 'dim',     v: '  │ Hyper-V · VMware · VirtualBox' },
+            { t: 'dim',     v: '  │ Docker · Docker Compose' },
+            { t: 'info',    v: '  ├─ IA LOCALE ────────────────────────────' },
+            { t: 'success', v: '  │ Ollama · Exo · ComfyUI · vLLM' },
+            { t: 'success', v: '  │ Llama · Qwen · WAN 2.1 · CUDA' },
+            { t: 'info',    v: '  ├─ AUTOMATISATION ───────────────────────' },
+            { t: 'yellow',  v: '  │ N8N · yt-dlp · ffmpeg · OAuth2' },
+            { t: 'yellow',  v: '  │ Python venv · Bash scripts · Ngrok' },
+            { t: 'info',    v: '  ├─ OUTILS ───────────────────────────────' },
+            { t: 'dim',     v: '  │ GLPI · Git · Tailscale · Office 365' },
+            { t: 'info',    v: '  └─ LANGUES ──────────────────────────────' },
+            { t: 'dim',     v: '  │ Français (natif) · Anglais · Espagnol' },
+            { t: 'spacer',  v: '' },
+        ],
+        projects: () => [
+            { t: 'spacer',  v: '' },
+            { t: 'info',    v: '  ┌─ [1] PIPELINE TIKTOK N8N — 2026 ───────' },
+            { t: 'bold',    v: '  │ Stage · 5 jan → 27 fév 2026 · 2 mois' },
+            { t: 'dim',     v: '  │ YouTube → TikTok automatisé · 24 nodes' },
+            { t: 'yellow',  v: '  │ N8N · yt-dlp · ffmpeg · MariaDB · OAuth2' },
+            { t: 'success', v: '  │ 0% intervention · 0€ infra · RT 365j' },
+            { t: 'info',    v: '  ├─ [2] PLATEFORME IA — OVEGNA SAS · 2025 ─' },
+            { t: 'bold',    v: '  │ Stage · Mai–Juin 2025 · Cergy' },
+            { t: 'dim',     v: '  │ Stack IA complète · Cluster Exo local' },
+            { t: 'success', v: '  │ ComfyUI · Ollama · Docker · CUDA · N8N' },
+            { t: 'info',    v: '  ├─ [3] FIVEM GARAGE & GANG SYSTEM ────────' },
+            { t: 'bold',    v: '  │ Freelance · 2024–présent' },
+            { t: 'dim',     v: '  │ ESX · Lua · NUI · RageUI · 10+ serveurs' },
+            { t: 'info',    v: '  ├─ [4] AUTOMATION TIKTOK PIPELINE ─────────' },
+            { t: 'bold',    v: '  │ Projet perso · 2025' },
+            { t: 'yellow',  v: '  │ N8N · yt-dlp · OAuth2 · 450+ vidéos/mois' },
+            { t: 'info',    v: '  └────────────────────────────────────────' },
+            { t: 'spacer',  v: '' },
+        ],
+        experience: () => [
+            { t: 'spacer',  v: '' },
+            { t: 'info',    v: '  ┌─ EXPÉRIENCES ──────────────────────────' },
+            { t: 'success', v: '  │ ● 2026  Stage Admin SI & Réseaux (2 mois)' },
+            { t: 'dim',     v: '  │         Pipeline N8N TikTok · doc complète' },
+            { t: 'info',    v: '  │ ● 2025  OVEGNA SAS — Cergy (4 sem.)' },
+            { t: 'dim',     v: '  │         Infra IA locale · Debian 12 · Docker' },
+            { t: 'dim',     v: '  │ ● 2020  Diot-Siaci Paris (observation)' },
+            { t: 'info',    v: '  ├─ FORMATION ────────────────────────────' },
+            { t: 'violet',  v: '  │ ● 2024→ BTS SIO SISR · Lycée Fulbert' },
+            { t: 'dim',     v: '  │         LAN/WAN · AD · DNS/DHCP · VPN' },
+            { t: 'dim',     v: '  │ ● 2021–2024  Bac Techno SI · Lycée Fulbert' },
+            { t: 'info',    v: '  └────────────────────────────────────────' },
+            { t: 'spacer',  v: '' },
+        ],
+        contact: () => [
+            { t: 'spacer',  v: '' },
+            { t: 'info',    v: '  ┌─ CONTACT ──────────────────────────────' },
+            { t: 'bold',    v: '  │ mail     rouis.rayan2005@gmail.com' },
+            { t: 'bold',    v: '  │ phone    +33 6 21 72 41 13' },
+            { t: 'bold',    v: '  │ linkedin /in/rayan-rouis' },
+            { t: 'dim',     v: '  │ location Paris, France' },
+            { t: 'success', v: '  │ status   DISPONIBLE stage/alternance' },
+            { t: 'info',    v: '  └────────────────────────────────────────' },
+            { t: 'spacer',  v: '' },
+            { t: 'dim',     v: '  Réponse garantie sous 24h.' },
+            { t: 'spacer',  v: '' },
+        ],
+        cv: () => {
+            const a = document.createElement('a');
+            a.href = 'CV_Rayan_Rouis-1.pdf'; a.download = 'CV_Rayan_Rouis-1.pdf';
+            a.click();
+            return [
+                { t: 'success', v: '  ✓ Téléchargement du CV lancé...' },
+            ];
+        },
+
+        neofetch: () => [
+            { t: 'info',    v: '         .·:+*#%%@@@@%%#*+:·.        rayan@portfolio' },
+            { t: 'info',    v: '      :*%@@@@@@@@@@@@@@@@@@@@%*:      ───────────────' },
+            { t: 'info',    v: '    +@@@@@@@@@@@@@@@@@@@@@@@@@@@@+    OS: Debian 12 Bookworm' },
+            { t: 'success', v: '   #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#   Kernel: 6.1.0-28-amd64' },
+            { t: 'success', v: '  %@@@@@@@ RAYAN ROUIS @@@@@@@@@@@@%  Shell: bash 5.2.15' },
+            { t: 'success', v: '  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Terminal: JetBrains Mono' },
+            { t: 'violet',  v: '  %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%  Uptime: 20 years, grinding' },
+            { t: 'violet',  v: '   #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#   Packages: Docker, N8N, Ollama' },
+            { t: 'dim',     v: '    +@@@@@@@@@@@@@@@@@@@@@@@@@@@@+    Resolution: 1920x1080' },
+            { t: 'dim',     v: '      :*%@@@@@@@@@@@@@@@@@@@@%*:      CPU: Cerveau humain @ 3.2GHz' },
+            { t: 'dim',     v: '         .·:+*#%%@@@@%%#*+:·.        RAM: 8GB (3.9GB used by passion)' },
+            { t: 'spacer',  v: '' },
+            { t: 'dim',     v: '  ████ ████ ████ ████ ████ ████ ████ ████' },
+            { t: 'spacer',  v: '' },
+        ],
+        'sudo rm -rf /': () => [
+            { t: 'error',   v: '  [sudo] password for rayan: ' },
+            { t: 'error',   v: '  ...' },
+            { t: 'error',   v: '  rm: cannot remove \'/\': Permission denied' },
+            { t: 'success', v: '  Nice try 😄 — le portfolio survit.' },
+            { t: 'dim',     v: '  (et non, les admins sys ne font pas ça en prod)' },
+            { t: 'spacer',  v: '' },
+        ],
+        'sudo rm -rf /*': () => [
+            { t: 'error',   v: '  [sudo] password for rayan: ' },
+            { t: 'error',   v: '  rm: cannot remove \'/\': Permission denied' },
+            { t: 'success', v: '  Nice try 😄 — le portfolio survit.' },
+            { t: 'spacer',  v: '' },
+        ],
+        matrix: () => {
+            const output = document.getElementById('terminal-output');
+            const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ0123456789RAYAN';
+            let count = 0;
+            const interval = setInterval(() => {
+                let line = '  ';
+                for(let i = 0; i < 48; i++) line += chars[Math.floor(Math.random()*chars.length)];
+                const el = document.createElement('div');
+                el.className = 't-out-line success';
+                el.style.opacity = Math.random() * 0.8 + 0.2;
+                el.textContent = line;
+                output.appendChild(el);
+                document.getElementById('terminal-body').scrollTop = 99999;
+                if(++count > 30) {
+                    clearInterval(interval);
+                    addLines([{ t: 'spacer', v: '' }, { t: 'cyan', v: '  Wake up, Rayan... The Matrix has you.' }, { t: 'spacer', v: '' }]);
+                }
+            }, 80);
+            return [];
+        },
+        hack: () => {
+            const steps = [
+                { t: 'success', v: '  [✓] Initializing breach sequence...' },
+                { t: 'success', v: '  [✓] Bypassing firewall... done' },
+                { t: 'yellow',  v: '  [~] Decrypting portfolio data...' },
+                { t: 'yellow',  v: '  [~] Access level: ROOT' },
+                { t: 'error',   v: '  [!] INTRUSION DETECTED' },
+                { t: 'error',   v: '  [!] Activating countermeasures...' },
+                { t: 'success', v: '  [✓] Just kidding. Tape "help" pour continuer.' },
+            ];
+            let i = 0;
+            const output = document.getElementById('terminal-output');
+            const interval = setInterval(() => {
+                if(i >= steps.length) { clearInterval(interval); return; }
+                const el = document.createElement('div');
+                el.className = `t-out-line ${steps[i].t}`;
+                el.textContent = steps[i].v;
+                output.appendChild(el);
+                document.getElementById('terminal-body').scrollTop = 99999;
+                i++;
+            }, 300);
+            return [];
+        },
+        ping: () => [
+            { t: 'success', v: '  PING rouis.rayan2005@gmail.com' },
+            { t: 'dim',     v: '  64 bytes from rayan: icmp_seq=1 ttl=64 time=0.42ms' },
+            { t: 'dim',     v: '  64 bytes from rayan: icmp_seq=2 ttl=64 time=0.38ms' },
+            { t: 'dim',     v: '  64 bytes from rayan: icmp_seq=3 ttl=64 time=0.41ms' },
+            { t: 'success', v: '  → Rayan est en ligne. Réponse garantie sous 24h.' },
+            { t: 'spacer',  v: '' },
+        ],
+        clear: () => {
+            termOutput.innerHTML = '';
+            return [];
+        },
+    };
+
+    const AUTOCOMPLETE = ['help','whoami','skills','projects','experience','contact','cv','neofetch','matrix','hack','ping','clear'];
+
+    function addLines(lines) {
+        lines.forEach(({ t, v }) => {
+            const el = document.createElement('div');
+            el.className = `t-out-line ${t}`;
+            el.textContent = v;
+            termOutput.appendChild(el);
+        });
+        termBody.scrollTop = termBody.scrollHeight;
+    }
+
+    function echoCmd(cmd) {
+        const el = document.createElement('div');
+        el.className = 't-out-line prompt-echo';
+        el.innerHTML = `<span style="color:var(--green)">rayan@portfolio</span><span style="color:var(--text-dim)"> ~ $ </span><span style="color:var(--text)">${cmd}</span>`;
+        termOutput.appendChild(el);
+    }
+
+    function runCommand(raw) {
+        const cmd = raw.trim().toLowerCase();
+        if (!cmd) return;
+        cmdHistory.unshift(raw);
+        histIdx = -1;
+        echoCmd(raw);
+        if (COMMANDS[cmd]) {
+            const result = COMMANDS[cmd]();
+            if (result && result.length) addLines(result);
+        } else {
+            addLines([
+                { t: 'error', v: `  bash: ${cmd}: commande introuvable` },
+                { t: 'dim',   v: '  tape "help" pour voir les commandes disponibles.' },
+            ]);
+        }
+        termBody.scrollTop = termBody.scrollHeight;
+    }
+
+    // Affiche message de bienvenue au load
+    window.addEventListener('load', () => {
+        addLines([
+            { t: 'info',    v: '  ██████╗  █████╗ ██╗   ██╗ █████╗ ███╗  ██╗' },
+            { t: 'info',    v: '  ██╔══██╗██╔══██╗╚██╗ ██╔╝██╔══██╗████╗ ██║' },
+            { t: 'info',    v: '  ██████╔╝███████║ ╚████╔╝ ███████║██╔██╗██║' },
+            { t: 'dim',     v: '  ██╔══██╗██╔══██║  ╚██╔╝  ██╔══██║██║╚████║' },
+            { t: 'violet',  v: '  ██║  ██║██║  ██║   ██║   ██║  ██║██║ ╚███║' },
+            { t: 'violet',  v: '  ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝' },
+            { t: 'spacer',  v: '' },
+            { t: 'success', v: '  Bienvenue sur le portfolio de Rayan ROUIS' },
+            { t: 'dim',     v: '  Admin Systèmes · Réseaux · IA · Automatisation' },
+            { t: 'spacer',  v: '' },
+            { t: 'yellow',  v: '  → tape "help" pour voir les commandes' },
+            { t: 'spacer',  v: '' },
+        ]);
+    });
+
+    termInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const val = termInput.value;
+            termInput.value = '';
+            runCommand(val);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (histIdx < cmdHistory.length - 1) {
+                histIdx++;
+                termInput.value = cmdHistory[histIdx];
+            }
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (histIdx > 0) {
+                histIdx--;
+                termInput.value = cmdHistory[histIdx];
+            } else {
+                histIdx = -1;
+                termInput.value = '';
+            }
+        } else if (e.key === 'Tab') {
+            e.preventDefault();
+            const partial = termInput.value.toLowerCase();
+            const match = AUTOCOMPLETE.find(c => c.startsWith(partial));
+            if (match) termInput.value = match;
+        }
+    });
+
+    termBody.addEventListener('click', () => termInput.focus());
+    termInput.focus();
+
     </script>
 </body>
 </html>
